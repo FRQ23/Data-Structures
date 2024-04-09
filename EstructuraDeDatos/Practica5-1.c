@@ -22,7 +22,9 @@ Node* insert_node(Node* root, int data) {
         root->right = insert_node(root->right, data);
     }
     return root;
-}int calculate_level(Node* root, int data, int level) {
+}
+
+int calculate_level(Node* root, int data, int level) {
     if (root == NULL) {
         return -1;
     }
