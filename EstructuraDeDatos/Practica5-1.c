@@ -97,23 +97,54 @@ void print_tree(Node* node, int level) {
 //    printf("Tree:\n");
 //    print_tree(root, 0);
 //
+//    printf("Nivel: %d")
+//
 //    return 0;
 //}
 
 
+//int main() {
+//    Node* root = NULL;
+//
+//    root = insert_node(root, 10);
+//    root = insert_node(root, 8);
+//    root = insert_node(root, 5);
+//    root = insert_node(root, 6);
+//    root = insert_node(root, 9);
+//    root = insert_node(root, 4);
+//    root = insert_node(root, 1);
+//
+//    printf("Tree:\n");
+//    print_tree(root, 0);
+//
+//    return 0;
+//}
+
 int main() {
     Node* root = NULL;
+    int data;
+    char input[10];
 
-    root = insert_node(root, 10);
-    root = insert_node(root, 8);
-    root = insert_node(root, 5);
-    root = insert_node(root, 6);
-    root = insert_node(root, 9);
-    root = insert_node(root, 4);
-    root = insert_node(root, 1);
+    printf("Enter integers (enter 'n' to stop):\n");
+    while (scanf("%s", input) && input[0] != 'n') {
+        data = atoi(input);
+        root = insert_node(root, data);
+    }
 
     printf("Tree:\n");
     print_tree(root, 0);
+
+    int data_for_level;
+    printf("\n Enter the value for which you want to calculate the level:\n");
+    scanf("%d", &data_for_level);
+    int level = calculate_level(root, data_for_level, 0);
+
+    int elements = num_elements(root);
+    int depth = calculate_depth(root);
+
+    printf("Level of data %d: %d\n", data_for_level, level);
+    printf("Number of elements: %d\n", elements);
+    printf("Depth of tree: %d\n", depth);
 
     return 0;
 }
