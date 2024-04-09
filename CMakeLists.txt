@@ -7,4 +7,5 @@ add_executable(siu EstructuraDeDatos/Practica3.c
         EstructuraDeDatos/Practica4-2.c
         EstructuraDeDatos/Practica4.c
         "EstructuraDeDatos/Practica5.c"
-        EstructuraDeDatos/Practica5-1.c)
+        EstructuraDeDatos/Practica5-1.c
+        EstructuraDeDatos/Practica4-3.c)

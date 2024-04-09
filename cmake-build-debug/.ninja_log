@@ -1,6 +1,10 @@
 # ninja log v5
 2	54	7309856512249901	CMakeFiles/siu.dir/EstructuraDeDatos/Practica3.c.obj	266fbe3e5a903095
-1	65	7343489678643678	build.ninja	d3e45b0d19b5cd5f
+1	65	7343816339552229	build.ninja	d3e45b0d19b5cd5f
 1	51	7309796945901367	CMakeFiles/siu.dir/ImplementacionPila/EjercicioPila.c.obj	6eaf69da1ca31d3b
 54	109	7309856512774888	siu.exe	881f37b31daa48b6
 1	65	7343354676512386	CMakeFiles/siu.dir/EstructuraDeDatos/Practica4.c.obj	7b3d10ebe3c7ec5d
+11	95	7343816349421232	CMakeFiles/siu.dir/EstructuraDeDatos/Practica5-1.c.obj	b06e3808fb5e1a4f
+6	97	7343816349441246	CMakeFiles/siu.dir/EstructuraDeDatos/Practica4.c.obj	7b3d10ebe3c7ec5d
+22	103	7343816349496351	CMakeFiles/siu.dir/EstructuraDeDatos/Practica5.c.obj	730831e39489dd66
+15	111	7343816349581438	CMakeFiles/siu.dir/EstructuraDeDatos/Practica4-3.c.obj	b10b43df1f7111a1

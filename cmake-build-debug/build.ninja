@@ -79,6 +79,12 @@ build CMakeFiles/siu.dir/EstructuraDeDatos/Practica5-1.c.obj: C_COMPILER__siu_un
   OBJECT_DIR = CMakeFiles\siu.dir
   OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos
 
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica4-3.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica4-3.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica4-3.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target siu
@@ -87,7 +93,7 @@ build CMakeFiles/siu.dir/EstructuraDeDatos/Practica5-1.c.obj: C_COMPILER__siu_un
 #############################################
 # Link the executable siu.exe
 
-build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/EstructuraDeDatos/Practica3.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica4-2.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica4.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica5.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica5-1.c.obj
+build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/EstructuraDeDatos/Practica3.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica4-2.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica4.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica5.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica5-1.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica4-3.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\siu.dir
