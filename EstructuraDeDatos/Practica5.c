@@ -1,5 +1,5 @@
 //
-// Created by Fertronic on 4/8/2024.
+// Created by que te importa metiche on 4/8/2024.
 //
 
 #include <stdio.h>

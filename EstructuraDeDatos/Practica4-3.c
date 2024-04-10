@@ -1,8 +1,6 @@
 //
-// Created by Fertronic on 4/9/2024.
+// Created by que te importa metiche on 4/9/2024.
 //
-
-#pragma once
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -379,7 +377,7 @@ int main(void)
 
     while(correPrograma)
     {
-        system("clear");
+        //system("clear");
         printf("\n\r");
         desplegarReproduccion(&colaReproduccion);
         printf("\n\r");
