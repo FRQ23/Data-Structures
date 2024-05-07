@@ -52,4 +52,4 @@ void insertarEnCola(Cola *cola, Nodo *nuevoNodo);
 void mostrarArchivos(Cola *cola);
 void eliminarNodo(Cola *cola);
 
-#endif //SIU_QUEUES_H
+#endif //SIU_QUEUES_HH

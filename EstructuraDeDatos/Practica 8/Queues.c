@@ -128,7 +128,7 @@ void eliminarNodo(Cola *cola) {
 
 //funciones del menú
 
-// Mostrar todos los archivos en todas las colas
+// Mostrar todos los archivos en todas las colass
 void mostrarColaImpresion(Cola_2 *colaPrincipal) {
     Cola *actual = colaPrincipal->inicio;
     while (actual != NULL) {
