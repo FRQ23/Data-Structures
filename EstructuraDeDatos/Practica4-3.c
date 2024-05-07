@@ -1,519 +1,500 @@
 //
-// Created by que te importa metiche on 4/9/2024.
+// Created by Fernando Rosales on 4/10/24.
 //
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 #define null NULL
-#define ACTIVAR 1
-#define DESACTIVAR 0
+#define ACTIVATE 1
+#define DEACTIVATE 0
 
-typedef struct
-{
-    char* nombre;
-    char* autor;
-    int fechaSalida;
 
-} Cancion;
+typedef struct {
+    char *name;
+    char *author;
+    int releaseYear;
 
-typedef struct Elemento
-{
-    Cancion* cancion;
-    struct Elemento* siguiente;
-    struct Elemento* anterior;
 
-} Elemento;
+} Song;
 
-typedef struct
-{
-    Elemento* inicio;
-    Elemento* final;
-    Elemento* actual;
 
-    int maxTam;
-    int cantidadElementos;
-    bool estaEnBucle;
-    bool estaEnPrimIter;
+typedef struct Element {
+    Song *song;
+    struct Element *next;
+    struct Element *previous;
 
-} Cola;
 
-void desplegarReproduccion(Cola* colaReproduccion);
-void dequeue(Cola *cola, int posicion);
-void enqueue(Cola* cola, Cancion* cancion, int posicion);
-void inicializarCola(Cola* cola);
-Elemento* alojarElemento(Cancion* cancion);
-void mostrarColaReproduccion(Cola* cola);
-int mostrarPlaylist(void);
-void toggleBucle(Cola* cola, int activar);
-bool estaEnModoCircular(Cola* cola);
+} Element;
 
-static Cancion playlistOriginal[15] =
-        {
-                {"Like a Stone", "Audioslave", 2002},
-                {"Decadence", "Disturbed", 2005},
-                {"Something In The Way", "Nirvana", 1991},
-                {"505", "Arctic Monkeys", 2007},
-                {"Creep", "Radiohead", 1993},
-                {"Freak On A Leash", "Korn", 1998},
-                {"Twist", "Korn", 1996},
-                {"Coming Undone", "Korn", 2005},
-                {"The Less I Know The Better", "Tame Impala", 2015},
-                {"Edge Of The Earth", "30 Seconds To Mars", 2002},
-                {"Song 2", "Blur", 1997},
-                {"The People That We Love", "Bush", 2001},
-                {"Feel Good Inc", "Gorillaz", 2005},
-                {"The Trooper", "Iron Maiden", 1983},
-                {"Broken Promises", "Element Eighty", 2003}
-        };
 
-void desplegarReproduccion(Cola* colaReproduccion)
-{
-    if (colaReproduccion->actual == null)
-    {
-        printf("Ninguna <<-- Ninguna -->> Ninguna\n");
+typedef struct {
+    Element *start;
+    Element *end;
+    Element *current;
+
+
+    int maxSize;
+    int numElements;
+    bool isLooped;
+    bool isFirstIter;
+
+
+} Queue;
+
+
+void displayPlayback(Queue *playbackQueue);
+void enqueue(Queue *queue, Song *song, int index);
+void dequeue(Queue *queue, int index);
+void initializeQueue(Queue *queue);
+Element *allocateElement(Song *song);
+void showPlaybackQueue(Queue *queue);
+int showPlaylist(void);
+void toggleLoop(Queue *queue, int activate);
+bool isLooping(Queue *queue);
+
+
+static Song originalPlaylist[15] = {
+        {"Falling Away From Me", "Korn", 1999},
+        {"Last Resort", "Papa Roach", 2000},
+        {"Numb", "Linkin Park", 2003},
+        {"Bodies", "Drowning Pool", 2001},
+        {"Blind", "Korn", 1994},
+        {"Chop Suey!", "System of a Down", 2001},
+        {"Wait and Bleed", "Slipknot", 1999},
+        {"Here to Stay", "Korn", 2002},
+        {"Freak on a Leash", "Korn", 1998},
+        {"My Own Summer (Shove It)", "Deftones", 1997},
+        {"Bring Me to Life", "Evanescence", 2003},
+        {"Crawling", "Linkin Park", 2001},
+        {"Becoming the Bull", "Atreyu", 2007},
+        {"Indestructible", "Disturbed", 2008},
+        {"I Hate Everything About You", "Three Days Grace", 2003}};
+
+
+void displayPlayback(Queue *playbackQueue) {
+    if (playbackQueue->numElements == 0) {
+        printf("La cola está vacía.\n");
         return;
     }
 
-    if (colaReproduccion->actual->anterior != null)
-    {
-        printf("%s - %s <<-- ", colaReproduccion->actual->anterior->cancion->nombre, colaReproduccion->actual->anterior->cancion->autor);
 
-    }else{
-
-        printf("Ninguna <<-- ");
+    if (playbackQueue->current == NULL) {
+        printf("El elemento actual es NULL.\n");
+        return;
     }
 
-    printf("%s - %s -->> ", colaReproduccion->actual->cancion->nombre, colaReproduccion->actual->cancion->autor);
 
-    if (colaReproduccion->actual->siguiente != null)
-    {
-        printf("%s - %s\n", colaReproduccion->actual->siguiente->cancion->nombre, colaReproduccion->actual->siguiente->cancion->autor);
-
-    }else{
-
-        printf("Ninguna\n");
+    if (playbackQueue->current->previous != NULL) {
+        printf("%s - %s <<-- ", playbackQueue->current->previous->song->name,
+               playbackQueue->current->previous->song->author);
+    } else {
+        printf("None <<-- ");
     }
 
-    return;
+
+    printf("%s - %s -->> ", playbackQueue->current->song->name,
+           playbackQueue->current->song->author);
+
+
+    if (playbackQueue->current->next != NULL) {
+        printf("%s - %s\n", playbackQueue->current->next->song->name,
+               playbackQueue->current->next->song->author);
+    } else {
+        printf("None\n");
+    }
 }
+//push auxiliar y pop sobre la original
 
-void dequeue(Cola *cola, int posicion)
-{
-    if (cola->cantidadElementos == 0)
-    {
+
+//respetar fifo
+//
+
+
+// Function to remove an element from the queue (dequeue)
+void dequeue(Queue *queue, int index) {
+    if (queue->numElements == 0) {
         printf("ERROR: underflow\n");
         return;
     }
 
-    if (posicion < 0 || posicion >= cola->cantidadElementos)
-    {
-        printf("\nERROR: unvalidPOS\n");
-        return;
+
+    Element *current = queue->start;
+    Element *previous = NULL;
+
+
+    // Find the element at the index
+    for (int i = 0; i < index && current != NULL; i++) {
+        previous = current;
+        current = current->next;
     }
 
-    Elemento* elementoEliminado = null;
-    Cancion* cancionOut = null;
 
-    if (posicion == 0)
-    {
-        elementoEliminado = cola->inicio;
-        cancionOut = elementoEliminado->cancion;
-
-        if (cola->cantidadElementos == 1)
-        {
-            cola->inicio = null;
-            cola->final = null;
-        }
-        else
-        {
-            cola->inicio = cola->inicio->siguiente;
-            cola->inicio->anterior = cola->final;
-            cola->final->siguiente = cola->inicio;
-        }
-    }
-    else if (posicion == cola->cantidadElementos - 1)
-    {
-        elementoEliminado = cola->final;
-        cancionOut = elementoEliminado->cancion;
-
-        cola->final = cola->final->anterior;
-        cola->final->siguiente = cola->inicio;
-        cola->inicio->anterior = cola->final;
-    }
-    else
-    {
-        Elemento* actual = cola->inicio;
-        for (int i = 0; i < posicion; i++)
-        {
-            actual = actual->siguiente;
-        }
-
-        elementoEliminado = actual;
-        cancionOut = elementoEliminado->cancion;
-
-        actual->anterior->siguiente = actual->siguiente;
-        actual->siguiente->anterior = actual->anterior;
-    }
-
-    cola->cantidadElementos--;
-
-    if (cola->cantidadElementos == 0)
-    {
-        cola->actual = null;
-    }
-    else if (cola->actual == elementoEliminado && cola->cantidadElementos != 0)
-    {
-        if (cola->actual->siguiente != null)
-        {
-            //cola->actual = cola->actual->anterior;
-            cola->actual = cola->actual->siguiente;
-
-        }else{
-            // cola->actual = cola->actual->siguiente; OPCION B: tiene mismo efecto
-            cola->actual = cola->inicio;
-        }
-    }
-    else{
-        //representativo, cola->actual se queda igual.
-        //cola->actual = cola->actual;
-    }
-
-    free(elementoEliminado);
-    printf("\nCancion eliminada: %s\n", cancionOut->nombre);
-    /*
-    if (cola->actual == elementoEliminado && cola->cantidadElementos != 0)
-    {
-        cola->actual = cola->actual->anterior;
-
-        free(elementoEliminado);
-        cola->cantidadElementos--;
-        //printf("\nCancion eliminada: %s\n", cancionOut->nombre);
+    // If the index is beyond the end of the queue, print an error message
+    if (current == NULL) {
+        printf("ERROR: index out of bounds\n");
         return;
     }
 
 
-
-
-    if (cola->cantidadElementos == 0)
-    {
-        cola->actual = null;
+    // If the element to be deleted is at the start of the queue
+    if (current == queue->start) {
+        queue->start = current->next;
+        if (queue->start != NULL) {
+            queue->start->previous = NULL;
+        }
+    } else {
+        previous->next = current->next;
+        if (current->next != NULL) {
+            current->next->previous = previous;
+        }
     }
-    else
-    {
-        cola->actual = cola->actual;
-    }
-    */
 
-    //printf("Llega a return statement\n");
-    return;
+
+    // If the element to be deleted is at the end of the queue
+    if (current == queue->end) {
+        queue->end = previous;
+        if (queue->end != NULL) {
+            queue->end->next = NULL;
+        }
+    }
+
+
+    // If the deleted element was the current element, update the current pointer
+    if (queue->current == current) {
+        queue->current = previous;  // Set current to the previous song
+    }
+
+
+    // Decrease the element counter in the queue
+    queue->numElements--;
+
+
+    // Free the memory of the deleted element
+    free(current);
+
+
+    printf("\nSong removed from position %d\n", index);
 }
 
-void enqueue(Cola* cola, Cancion* cancion, int posicion)
-{
-    if (cola->maxTam > 0 && cola->cantidadElementos == cola->maxTam)
-    {
-        printf("\nERROR:overflow\n");
+
+
+
+void initializeQueue(Queue *queue) {
+    queue->start = null;
+    queue->end = null;
+    queue->current = null;
+    queue->maxSize = 0;
+    queue->numElements = 0;
+    queue->isLooped = true;
+    queue->isFirstIter = true;
+
+
+}
+
+
+Element *allocateElement(Song *song) {
+    Element *newElement = malloc(sizeof(Element));
+
+
+    newElement->song = song;
+    newElement->next = null;
+    newElement->previous = null;
+
+
+    return newElement;
+}
+
+
+void showPlaybackQueue(Queue *queue) {
+    if (queue->numElements == 0) {
+        printf("La cola está vacía.\n");
         return;
     }
 
-    if (posicion < 0 || posicion > cola->cantidadElementos)
-    {
-        printf("\nERROR:unvalidPOS\n");
-        return;
-    }
 
-    Elemento* nuevoElemento = alojarElemento(cancion);
-
-    if (cola->cantidadElementos == 0)
-    {
-        cola->inicio = nuevoElemento;
-        cola->final = nuevoElemento;
-        nuevoElemento->siguiente = nuevoElemento;
-        nuevoElemento->anterior = nuevoElemento;
-    }
-    else
-    {
-        if (posicion == 0)
-        {
-            nuevoElemento->siguiente = cola->inicio;
-            nuevoElemento->anterior = cola->final;
-            cola->inicio->anterior = nuevoElemento;
-            cola->final->siguiente = nuevoElemento;
-            cola->inicio = nuevoElemento;
-        }
-        else if (posicion == cola->cantidadElementos)
-        {
-            nuevoElemento->siguiente = cola->inicio;
-            nuevoElemento->anterior = cola->final;
-            cola->final->siguiente = nuevoElemento;
-            cola->inicio->anterior = nuevoElemento;
-            cola->final = nuevoElemento;
-        }
-        else
-        {
-            Elemento* actual = cola->inicio;
-            for (int i = 0 ; i < posicion - 1 ; i++) { actual = actual->siguiente; }
-
-            nuevoElemento->siguiente = actual->siguiente;
-            nuevoElemento->anterior = actual;
-            actual->siguiente->anterior = nuevoElemento;
-            actual->siguiente = nuevoElemento;
-        }
-    }
-
-    cola->cantidadElementos++;
-
-    if (cola->cantidadElementos == 1) { cola->actual = cola->inicio; }
-
-    else{
-        //representativo, {cola->actual} se queda igual.
-        //cola->actual = cola->actual;
-    }
-
-    return;
-}
-
-void inicializarCola(Cola* cola)
-{
-    cola->inicio = null;
-    cola->final = null;
-    cola->actual = null;
-    cola->maxTam = 0;
-    cola->cantidadElementos = 0;
-    cola->estaEnBucle = true;
-    cola->estaEnPrimIter = true;
-
-    return;
-}
-
-Elemento* alojarElemento(Cancion* cancion)
-{
-    Elemento* nuevo = malloc(sizeof(Elemento));
-
-    nuevo->cancion = cancion;
-    nuevo->siguiente = null;
-    nuevo->anterior = null;
-
-    return nuevo;
-}
-
-void mostrarColaReproduccion(Cola* cola)
-{
-    if (cola->cantidadElementos == 0)
-    {
-        return;
-    }
-
-    Elemento* actual = cola->inicio;
-
+    Element *current = queue->start;
     int n = 0;
     printf("\n");
 
-    while (n < cola->cantidadElementos)
-    {
-        printf("%d)%s - %s\n", n, actual->cancion->nombre, actual->cancion->autor);
+
+    while (n < queue->numElements) {
+        printf("%d) %s - %s\n", n, current->song->name, current->song->author);
         n++;
-
-        actual = actual->siguiente;
-    }
-
-    return;
-}
-
-int mostrarPlaylist(void)
-{
-    int seleccion;
-    printf("\nCanciones disponibles: \n");
-    for (int i = 0 ; i < 15 ; i++)
-    {
-        printf("%d) %s - %s\n", i, playlistOriginal[i].nombre, playlistOriginal[i].autor);
-    }
-
-    printf("Elige una cancion\n> ");
-    scanf("\n%d", &seleccion);
-
-    return seleccion;
-}
-
-void toggleBucle(Cola* cola, int activar)
-{
-    // si la cola esta vacia, salimos para evitar segmentation fault
-    if (cola->cantidadElementos == 0) { return; }
-
-    if (activar)
-    {
-        cola->inicio->anterior = cola->final;
-        cola->final->siguiente = cola->inicio;
-        cola->estaEnBucle = true;
-        //printf("\nBUCLE ACTIVADO\n"); debug
-    }
-    else
-    {
-        cola->inicio->anterior = null;
-        cola->final->siguiente = null;
-        cola->estaEnBucle = false;
-        //printf("\nBUCLE DESACTIVADO\n"); debug
+        current = current->next;
     }
 }
 
-bool estaEnModoCircular(Cola* cola)
-{
-    bool output = cola->inicio->anterior == cola->final && cola->final->siguiente == cola->inicio;
 
-    return (output && cola->cantidadElementos > 0);
+int showPlaylist(void) {
+    int selection;
+    printf("\nAvailable songs: \n");
+    for (int i = 0; i < 15; i++) {
+        printf("%d) %s - %s\n", i, originalPlaylist[i].name,
+               originalPlaylist[i].author);
+    }
+
+
+    printf("Choose a song\n> ");
+    scanf("\n%d", &selection);
+
+
+    return selection;
 }
 
-int main(void)
-{
-    int i, option, correPrograma, indice;
 
-    correPrograma = true;
+void toggleLoop(Queue *queue, int activate) {
+    if (queue->numElements == 0) {
+        return;
+    }
 
-    Cola colaReproduccion;
-    inicializarCola(&colaReproduccion);
 
-    while(correPrograma)
-    {
+    if (activate) {
+        if (queue->start != NULL && queue->end != NULL) {
+            queue->start->previous = queue->end;
+            queue->end->next = queue->start;
+        }
+        queue->isLooped = true;
+    } else {
+        if (queue->start != NULL) {
+            queue->start->previous = NULL;
+        }
+        if (queue->end != NULL) {
+            queue->end->next = NULL;
+        }
+        queue->isLooped = false;
+    }
+}
+
+
+bool isLooping(Queue *queue) {
+    bool output = false;
+    if (queue->start != NULL && queue->end != NULL) {
+        output = queue->start->previous == queue->end && queue->end->next == queue->start;
+    }
+    return (output && queue->numElements > 0);
+}
+
+
+void enqueue(Queue *queue, Song *song, int index) {
+    if (queue->maxSize > 0 && queue->numElements == queue->maxSize) {
+        printf("\nERROR: overflow\n");
+        return;
+    }
+
+
+    Element *newElement = allocateElement(song);
+
+
+    if (queue->numElements == 0) {
+        // If the queue is empty, add the element at the start
+        newElement->next = queue->start;
+        if (queue->start != NULL) {
+            queue->start->previous = newElement;
+        }
+        queue->start = newElement;
+        queue->end = newElement;
+        queue->current = newElement;  // Set current to the inserted song
+    } else if (index == 0) {
+        // If index is 0, add the element after the current song
+        newElement->next = queue->current->next;
+        newElement->previous = queue->current;
+        if (queue->current->next != NULL) {
+            queue->current->next->previous = newElement;
+        }
+        queue->current->next = newElement;
+        if (queue->current == queue->end) {
+            queue->end = newElement;
+        }
+    } else {
+        // Find the element currently at the index
+        Element *current = queue->start;
+        for (int i = 0; i < index - 1 && current != NULL; i++) {
+            current = current->next;
+        }
+
+
+        // If the index is beyond the end of the queue, add the element at the end
+        if (current == NULL || current == queue->end) {
+            newElement->next = NULL;
+            newElement->previous = queue->end;
+            queue->end->next = newElement;
+            queue->end = newElement;
+        } else {
+            // Otherwise, insert the element at the index
+            newElement->next = current->next;
+            newElement->previous = current;
+            current->next = newElement;
+        }
+    }
+
+
+    queue->numElements++;
+}
+
+
+int main(void) {
+    int i, option, runProgram, index;
+
+
+    runProgram = true;
+
+
+    Queue playbackQueue;
+    initializeQueue(&playbackQueue);
+
+
+    while (runProgram) {
         //system("clear");
         printf("\n\r");
-        desplegarReproduccion(&colaReproduccion);
+        displayPlayback(&playbackQueue);
         printf("\n\r");
-        printf("\n\r [0] BUCLE");
-        printf("\n\r [1] ANTERIOR");
-        printf("\n\r [2] SIGUIENTE");
-        printf("\n\r [3] AGREGAR CANCION");
-        printf("\n\r [4] MOSTRAR LISTA DE REPRODUCCION");
-        printf("\n\r [5] QUITAR CANCION");
-        printf("\n\r [6] REINICIAR REPRODUCCION");
-        printf("\n\r [7] TERMINAR PROGRAMA");
+        printf("\n\r [0] LOOP");
+        printf("\n\r [1] PREVIOUS");
+        printf("\n\r [2] NEXT");
+        printf("\n\r [3] ADD SONG");
+        printf("\n\r [4] SHOW PLAYBACK QUEUE");
+        printf("\n\r [5] REMOVE SONG");
+        printf("\n\r [6] RESTART PLAYBACK");
+        printf("\n\r [7] END PROGRAM");
 
-        printf("\n\r Escoge opcion: ");
-        scanf("%d",&option);
-        switch(option)
-        {
+
+        printf("\n\r Choose an option: ");
+        scanf("%d", &option);
+        switch (option) {
             case 0:
-                printf("[0] BUCLE\n");
+                printf("[0] LOOP\n");
 
-                if (colaReproduccion.estaEnBucle)
-                {
-                    toggleBucle(&colaReproduccion, DESACTIVAR);
 
-                }else{
-                    toggleBucle(&colaReproduccion, ACTIVAR);
+                if (playbackQueue.isLooped) {
+                    toggleLoop(&playbackQueue, DEACTIVATE);
+
+
+                } else {
+                    toggleLoop(&playbackQueue, ACTIVATE);
                 }
+
 
                 break;
             case 1:
-                printf("\n[1] ANTERIOR\n");
+                printf("\n[1] PREVIOUS\n");
 
-                if (colaReproduccion.actual != null)
-                {
-                    colaReproduccion.actual = colaReproduccion.actual->anterior;
 
+                // Check if there is a previous song
+                if (playbackQueue.current != null && playbackQueue.current->previous != null) {
+                    playbackQueue.current = playbackQueue.current->previous;
+                } else {
+                    printf("You are already at the first song, can't go to the previous.\n");
                 }
-
                 break;
             case 2:
-                printf("\n[2] SIGUIENTE\n");
 
-                if (colaReproduccion.actual != null)
-                {
-                    colaReproduccion.actual = colaReproduccion.actual->siguiente;
+
+                //en caso de que no haya canciones
+                printf("\n[2] NEXT\n");
+
+
+                if (playbackQueue.current != null && playbackQueue.current->next != null) {
+                    playbackQueue.current = playbackQueue.current->next;
+                } else {
+                    printf("You are already at the last song, can't go to the next.\n");
                 }
+
 
                 break;
             case 3:
-                printf("\n[3] Agregar cancion\n");
+                printf("\n[3] Add song\n");
 
-                i = mostrarPlaylist();
 
-                if (i < 0 || i > 15) { break; }
+                i = showPlaylist();
 
-                printf("\nMostrando cola de reproduccion\n");
-                mostrarColaReproduccion(&colaReproduccion);
-                printf("\nEliga una posicion donde insertar la cancion\n> ");
-                scanf("\n%d", &indice);
 
-                enqueue(&colaReproduccion, &playlistOriginal[i], indice);
-
-                if (colaReproduccion.estaEnPrimIter)
-                {
-                    /*
-                    * esta validacion es para tener el bucle desactivado tras la primera iteracion
-                    * esto ya que nos interesa que el el modo circular no este activado
-                    * predeterminadamente
-                    */
-                    toggleBucle(&colaReproduccion, DESACTIVAR);
-                    colaReproduccion.estaEnPrimIter = false;
+                if (i < 0 || i > 15) {
                     break;
                 }
 
-                if (estaEnModoCircular(&colaReproduccion) && !colaReproduccion.estaEnBucle)
-                {
-                    toggleBucle(&colaReproduccion, DESACTIVAR);
+
+                printf("\nShowing playback queue\n");
+                showPlaybackQueue(&playbackQueue);
+                printf("\nChoose a position to insert the song\n> ");
+                scanf("\n%d", &index);
+
+
+                enqueue(&playbackQueue, &originalPlaylist[i], index);
+
+
+                if (playbackQueue.isFirstIter) {
+                    toggleLoop(&playbackQueue, DEACTIVATE);
+                    playbackQueue.isFirstIter = false;
+                    break;
                 }
 
-                sleep(0.5);
+
+                if (isLooping(&playbackQueue) && !playbackQueue.isLooped) {
+                    toggleLoop(&playbackQueue, DEACTIVATE);
+                }
+
 
                 break;
             case 4:
-                printf("\n[4] Mostrando cola de reproduccion\n");
-                mostrarColaReproduccion(&colaReproduccion);
+                printf("\n[4] Showing playback queue\n");
+                showPlaybackQueue(&playbackQueue);
 
-                sleep(4);
 
                 break;
             case 5:
-                printf("\n[5] Quitar cancion de la cola.\n");
+                printf("\n[5] Remove song from the queue.\n");
 
-                printf("\nMostrando cola de reproduccion\n");
-                mostrarColaReproduccion(&colaReproduccion);
-                printf("\nEliga una posicion para eliminar la cancion\n> ");
-                scanf("\n%d", &indice);
 
-                dequeue(&colaReproduccion, indice);
+                printf("\nShowing playback queue\n");
+                showPlaybackQueue(&playbackQueue);
+                printf("\nChoose a position to remove the song\n> ");
+                scanf("\n%d", &index);
 
-                // validacion para evitar crash en caso de que se elimine el ultimo elemento de la cola
-                if (colaReproduccion.cantidadElementos == 0) { break; }
 
-                if (estaEnModoCircular(&colaReproduccion) && !colaReproduccion.estaEnBucle)
-                {
-                    toggleBucle(&colaReproduccion, DESACTIVAR);
+                dequeue(&playbackQueue, index);
+
+
+                if (playbackQueue.numElements == 0) {
+                    break;
                 }
 
-                sleep(0.5);
+
+                if (isLooping(&playbackQueue) && !playbackQueue.isLooped) {
+                    toggleLoop(&playbackQueue, DEACTIVATE);
+                }
 
                 break;
             case 6:
-                printf("\n[6] REINICIAR REPRODUCCION\n");
+                printf("\n[6] RESTART PLAYBACK\n");
 
-                if (colaReproduccion.inicio != null)
-                {
-                    colaReproduccion.actual = colaReproduccion.inicio;
+
+                if (playbackQueue.start != null) {
+                    playbackQueue.current = playbackQueue.start;
                 }
 
-                printf("\nReproducción reiniciada.\n");
-
-                sleep(0.5);
+                printf("\nPlayback restarted.\n");
 
                 break;
             case 7:
-                printf("Bye bye\n");
-                correPrograma = false;
+                printf("Utini!\n");
+                runProgram = false;
                 break;
             default:
                 break;
         }
     }
 
-    while (colaReproduccion.cantidadElementos > 0)
-    {
-        dequeue(&colaReproduccion, 0);
+
+    while (playbackQueue.numElements > 0) {
+        dequeue(&playbackQueue, 0);
     }
+
 
     printf("\n\n\r");
     return 0;
 }
+

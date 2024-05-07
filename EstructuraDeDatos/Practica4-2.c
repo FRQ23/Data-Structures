@@ -114,23 +114,23 @@ int main(void) {
                 printf("Ejecutando caso 3...\n");
                 mostrar_canciones_disponibles(canciones, 15);
                 int cancion_seleccionada = seleccionar_cancion(canciones, 15);
-                int posicion_seleccionada = seleccionar_posicion(cola_reproduccion);
+                int posicion_seleccionada = seleccionar_posicion(&cola_reproduccion);
 
                 Elemento *nuevo_elemento = (Elemento *)malloc(sizeof(Elemento));
                 nuevo_elemento->dato = canciones[cancion_seleccionada];
 
                 if (posicion_seleccionada == 0) {
                     nuevo_elemento->ant = NULL;
-                    nuevo_elemento->sig = cola_reproduccion->frente;
-                    if (cola_reproduccion->frente != NULL) {
-                        cola_reproduccion->frente->ant = nuevo_elemento;
+                    nuevo_elemento->sig = cola_reproduccion.frente;
+                    if (cola_reproduccion.frente != NULL) {
+                        cola_reproduccion.frente->ant = nuevo_elemento;
                     }
-                    cola_reproduccion->frente = nuevo_elemento;
-                    if (cola_reproduccion->fin == NULL) {
-                        cola_reproduccion->fin = nuevo_elemento;
+                    cola_reproduccion.frente = nuevo_elemento;
+                    if (cola_reproduccion.fin == NULL) {
+                        cola_reproduccion.fin = nuevo_elemento;
                     }
                 } else {
-                    Elemento *temporal = cola_reproduccion->frente;
+                    Elemento *temporal = cola_reproduccion.frente;
                     int i;
 
                     for (i = 1; i < posicion_seleccionada && temporal != NULL; i++) {
@@ -143,22 +143,22 @@ int main(void) {
                         if (temporal->sig != NULL) {
                             temporal->sig->ant = nuevo_elemento;
                         } else {
-                            cola_reproduccion->fin = nuevo_elemento;
+                            cola_reproduccion.fin = nuevo_elemento;
                         }
                         temporal->sig = nuevo_elemento;
                     } else {
-                        nuevo_elemento->ant = cola_reproduccion->fin;
+                        nuevo_elemento->ant = cola_reproduccion.fin;
                         nuevo_elemento->sig = NULL;
-                        if (cola_reproduccion->fin != NULL) {
-                            cola_reproduccion->fin->sig = nuevo_elemento;
+                        if (cola_reproduccion.fin != NULL) {
+                            cola_reproduccion.fin->sig = nuevo_elemento;
                         }
-                        cola_reproduccion->fin = nuevo_elemento;
-                        if (cola_reproduccion->frente == NULL) {
-                            cola_reproduccion->frente = nuevo_elemento;
+                        cola_reproduccion.fin = nuevo_elemento;
+                        if (cola_reproduccion.frente == NULL) {
+                            cola_reproduccion.frente = nuevo_elemento;
                         }
                     }
                 }
-                cola_reproduccion->num_elementos++;
+                cola_reproduccion.num_elementos++;
                 break;
             case 4:
                 printf("Ejecutando caso 4...\n");
