@@ -1,4 +1,4 @@
-#include "queues.h"
+#include "Queues.h"
 
 // Variables globales para controlar la prioridad
 int prioridadMenorPrimero = 1;  // 1 = menor primero, 0 = mayor primero
