@@ -1,5 +1,5 @@
 //
-// Created by que te importa metiche on 4/9/24.
+// Created by Fernando Rosales on 4/10/24.
 //
 
 #include <stdbool.h>
@@ -37,8 +37,8 @@ typedef struct {
 } Queue;
 
 void displayPlayback(Queue *playbackQueue);
-void enqueue(Queue *queue, Song *song);
-void dequeue(Queue *queue);
+void enqueue(Queue *queue, Song *song, int index);
+void dequeue(Queue *queue, int index);
 void initializeQueue(Queue *queue);
 Element *allocateElement(Song *song);
 void showPlaybackQueue(Queue *queue);
@@ -64,115 +64,94 @@ static Song originalPlaylist[15] = {
         {"I Hate Everything About You", "Three Days Grace", 2003}};
 
 void displayPlayback(Queue *playbackQueue) {
-    if (playbackQueue->current == null) {
-        printf("None <<-- None -->> None\n");
+    if (playbackQueue->numElements == 0) {
+        printf("La cola está vacía.\n");
         return;
     }
 
-    if (playbackQueue->current->previous != null) {
+    if (playbackQueue->current == NULL) {
+        printf("El elemento actual es NULL.\n");
+        return;
+    }
+
+    if (playbackQueue->current->previous != NULL) {
         printf("%s - %s <<-- ", playbackQueue->current->previous->song->name,
                playbackQueue->current->previous->song->author);
-
     } else {
-
         printf("None <<-- ");
     }
 
     printf("%s - %s -->> ", playbackQueue->current->song->name,
            playbackQueue->current->song->author);
 
-    if (playbackQueue->current->next != null) {
+    if (playbackQueue->current->next != NULL) {
         printf("%s - %s\n", playbackQueue->current->next->song->name,
                playbackQueue->current->next->song->author);
-
     } else {
-
         printf("None\n");
     }
-
-    return;
 }
-
-
 //push auxiliar y pop sobre la original
 
 //respetar fifo
 //
-// Function to add an element to the queue (enqueue)
-void enqueue(Queue *queue, Song *song) {
-    if (queue->maxSize > 0 && queue->numElements == queue->maxSize) {
-        printf("\nERROR: overflow\n");
-        return;
-    }
-
-    Element *newElement = allocateElement(song);
-
-    // If the queue is empty, add the element as the only element in the queue
-    if (queue->numElements == 0) {
-        queue->start = newElement;
-        queue->end = newElement;
-        newElement->next = newElement;
-        newElement->previous = newElement;
-    } else {
-        // Add the new element to the end of the queue
-        newElement->next = queue->start;
-        newElement->previous = queue->end;
-        queue->end->next = newElement;
-        queue->start->previous = newElement;
-        queue->end = newElement;
-    }
-
-    // Increment the element counter in the queue
-    queue->numElements++;
-
-    // If it's the first element, update the current pointer
-    if (queue->numElements == 1) {
-        queue->current = queue->start;
-    }
-
-    return;
-}
 
 // Function to remove an element from the queue (dequeue)
-void dequeue(Queue *queue) {
+void dequeue(Queue *queue, int index) {
     if (queue->numElements == 0) {
         printf("ERROR: underflow\n");
         return;
     }
 
-    Element *deletedElement = queue->start;
-    Song *songOut = deletedElement->song;
+    Element *current = queue->start;
+    Element *previous = NULL;
 
-    // If there are more than one element in the queue, move the start pointer to the next element
-    if (queue->numElements > 1) {
-        queue->start = queue->start->next;
-    } else {
-        // If it's the last element, update the start and end of the queue
-        queue->start = NULL;
-        queue->end = NULL;
+    // Find the element at the index
+    for (int i = 0; i < index && current != NULL; i++) {
+        previous = current;
+        current = current->next;
     }
 
-    // Disconnect the deleted element from the queue
-    deletedElement->next->previous = deletedElement->previous;
-    deletedElement->previous->next = deletedElement->next;
+    // If the index is beyond the end of the queue, print an error message
+    if (current == NULL) {
+        printf("ERROR: index out of bounds\n");
+        return;
+    }
+
+    // If the element to be deleted is at the start of the queue
+    if (current == queue->start) {
+        queue->start = current->next;
+        if (queue->start != NULL) {
+            queue->start->previous = NULL;
+        }
+    } else {
+        previous->next = current->next;
+        if (current->next != NULL) {
+            current->next->previous = previous;
+        }
+    }
+
+    // If the element to be deleted is at the end of the queue
+    if (current == queue->end) {
+        queue->end = previous;
+        if (queue->end != NULL) {
+            queue->end->next = NULL;
+        }
+    }
+
+    // If the deleted element was the current element, update the current pointer
+    if (queue->current == current) {
+        queue->current = previous;  // Set current to the previous song
+    }
 
     // Decrease the element counter in the queue
     queue->numElements--;
 
-    // If the deleted element was the current element, update the current pointer
-    if (queue->current == deletedElement) {
-        queue->current = queue->start;
-    }
-
     // Free the memory of the deleted element
-    free(deletedElement);
+    free(current);
 
-    printf("\nSong removed: %s\n", songOut->name);
-
-    return;
+    printf("\nSong removed from position %d\n", index);
 }
-
-
 
 
 void initializeQueue(Queue *queue) {
@@ -184,7 +163,6 @@ void initializeQueue(Queue *queue) {
     queue->isLooped = true;
     queue->isFirstIter = true;
 
-    return;
 }
 
 Element *allocateElement(Song *song) {
@@ -199,22 +177,19 @@ Element *allocateElement(Song *song) {
 
 void showPlaybackQueue(Queue *queue) {
     if (queue->numElements == 0) {
+        printf("La cola está vacía.\n");
         return;
     }
 
     Element *current = queue->start;
-
     int n = 0;
     printf("\n");
 
     while (n < queue->numElements) {
         printf("%d) %s - %s\n", n, current->song->name, current->song->author);
         n++;
-
         current = current->next;
     }
-
-    return;
 }
 
 int showPlaylist(void) {
@@ -232,27 +207,85 @@ int showPlaylist(void) {
 }
 
 void toggleLoop(Queue *queue, int activate) {
-    // If the queue is empty, exit to avoid segmentation fault
     if (queue->numElements == 0) {
         return;
     }
 
     if (activate) {
-        queue->start->previous = queue->end;
-        queue->end->next = queue->start;
+        if (queue->start != NULL && queue->end != NULL) {
+            queue->start->previous = queue->end;
+            queue->end->next = queue->start;
+        }
         queue->isLooped = true;
     } else {
-        queue->start->previous = null;
-        queue->end->next = null;
+        if (queue->start != NULL) {
+            queue->start->previous = NULL;
+        }
+        if (queue->end != NULL) {
+            queue->end->next = NULL;
+        }
         queue->isLooped = false;
     }
 }
 
 bool isLooping(Queue *queue) {
-    bool output =
-            queue->start->previous == queue->end && queue->end->next == queue->start;
-
+    bool output = false;
+    if (queue->start != NULL && queue->end != NULL) {
+        output = queue->start->previous == queue->end && queue->end->next == queue->start;
+    }
     return (output && queue->numElements > 0);
+}
+
+void enqueue(Queue *queue, Song *song, int index) {
+    if (queue->maxSize > 0 && queue->numElements == queue->maxSize) {
+        printf("\nERROR: overflow\n");
+        return;
+    }
+
+    Element *newElement = allocateElement(song);
+
+    if (queue->numElements == 0) {
+        // If the queue is empty, add the element at the start
+        newElement->next = queue->start;
+        if (queue->start != NULL) {
+            queue->start->previous = newElement;
+        }
+        queue->start = newElement;
+        queue->end = newElement;
+        queue->current = newElement;  // Set current to the inserted song
+    } else if (index == 0) {
+        // If index is 0, add the element after the current song
+        newElement->next = queue->current->next;
+        newElement->previous = queue->current;
+        if (queue->current->next != NULL) {
+            queue->current->next->previous = newElement;
+        }
+        queue->current->next = newElement;
+        if (queue->current == queue->end) {
+            queue->end = newElement;
+        }
+    } else {
+        // Find the element currently at the index
+        Element *current = queue->start;
+        for (int i = 0; i < index - 1 && current != NULL; i++) {
+            current = current->next;
+        }
+
+        // If the index is beyond the end of the queue, add the element at the end
+        if (current == NULL || current == queue->end) {
+            newElement->next = NULL;
+            newElement->previous = queue->end;
+            queue->end->next = newElement;
+            queue->end = newElement;
+        } else {
+            // Otherwise, insert the element at the index
+            newElement->next = current->next;
+            newElement->previous = current;
+            current->next = newElement;
+        }
+    }
+
+    queue->numElements++;
 }
 
 int main(void) {
@@ -294,10 +327,12 @@ int main(void) {
             case 1:
                 printf("\n[1] PREVIOUS\n");
 
-                if (playbackQueue.current != null) {
+                // Check if there is a previous song
+                if (playbackQueue.current != null && playbackQueue.current->previous != null) {
                     playbackQueue.current = playbackQueue.current->previous;
+                } else {
+                    printf("You are already at the first song, can't go to the previous.\n");
                 }
-
                 break;
             case 2:
 
