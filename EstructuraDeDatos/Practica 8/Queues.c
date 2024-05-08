@@ -234,7 +234,7 @@ void vaciarCola(Cola *cola) {
 
     while (actual != NULL) {
         siguiente = actual->sig;
-        free(actual->archivo.nombre);  // Asegúrate de que el nombre se haya asignado dinámicamente
+        free(actual->archivo.nombre);  // Asegurarse de que el nombre se haya asignado dinámicamente
         free(actual);
         actual = siguiente;
     }

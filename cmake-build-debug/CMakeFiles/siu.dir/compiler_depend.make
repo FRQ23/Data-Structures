@@ -84,7 +84,7 @@ CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.o: /Users/fernandorosal
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/wait.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
-  /Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica\ 8/queues.h
+  /Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica\ 8/Queues.h
 
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h:
@@ -159,8 +159,6 @@ CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.o: /Users/fernandorosal
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/secure/_stdio.h:
 
-/Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica\ 8/queues.h:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/stdint.h:
@@ -178,6 +176,8 @@ CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.o: /Users/fernandorosal
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/machine/_mcontext.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/machine/endian.h:
+
+/Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica\ 8/Queues.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/i386/types.h:
 
