@@ -1,5 +1,4 @@
 #include "queues.h"
-#include <string.h>
 
 // Variables globales para controlar la prioridad
 int prioridadMenorPrimero = 1;  // 1 = menor primero, 0 = mayor primero
@@ -82,7 +81,6 @@ void agregarArchivo(Cola_2* cola2, char* nombre, int paginas) {
     agregarNodoACola(cola, nuevoNodo);
 }
 
-#include <stdlib.h>
 
 // Función de comparación para qsort
 int compararArchivos(const void *a, const void *b) {
