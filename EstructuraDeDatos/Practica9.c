@@ -31,7 +31,7 @@ int comparar(Nodo* a, Nodo* b, int esMinHeap);
 void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos);
 void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap);
 
-/*
+
 void insertarDocumentosIniciales(Monton* monton) {
     agregarArchivo(monton, 10, "doc1");
     agregarArchivo(monton, 5, "doc2");
@@ -43,7 +43,7 @@ void insertarDocumentosIniciales(Monton* monton) {
     agregarArchivo(monton, 30, "doc8");
     printf("Documentos iniciales insertados.\n");
 }
-*/
+
 
 
 int main(void) {
@@ -52,7 +52,7 @@ int main(void) {
     Monton* colaDeImpresion = crearMonton(10, 1); // heap min por defecto
 
     // Insertar documentos iniciales
-    //insertarDocumentosIniciales(colaDeImpresion);
+    insertarDocumentosIniciales(colaDeImpresion);
 
     while (1) {
         printf("\nMENU\n");
@@ -165,27 +165,15 @@ void eliminarArchivo(Monton* monton, int indice) {
         printf("Índice no válido.\n");
         return;
     }
-
-    Nodo* a_eliminar = monton->arreglo_nodos[indice];
     Nodo* ultimo = monton->arreglo_nodos[monton->num_nodos - 1];
-
-    // Mostrar la información del archivo que se va a eliminar
-    printf("Eliminando archivo: %s, Páginas: %d\n", a_eliminar->nombre, a_eliminar->paginas);
-
-    if (indice != monton->num_nodos - 1) {
-        monton->arreglo_nodos[indice] = ultimo;
-        // Reorganizar el heap
-        heapifyDown(monton, indice);
-        heapifyUp(monton, indice);
-    }
-
+    Nodo* a_eliminar = monton->arreglo_nodos[indice];
+    monton->arreglo_nodos[indice] = ultimo;
     monton->num_nodos--;
-    sincronizarArbol(monton->raiz, monton->arreglo_nodos, 0, monton->num_nodos);
 
-    // Liberar el nodo eliminado
     free(a_eliminar);
+    heapifyDown(monton, indice);
+    sincronizarArbol(monton->raiz, monton->arreglo_nodos, 0, monton->num_nodos);
 }
-
 
 void eliminarTodosLosArchivos(Monton* monton) {
     for (int i = 0; i < monton->num_nodos; i++) {
