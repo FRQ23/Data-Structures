@@ -1,10 +1,5 @@
 # ninja log v5
-1	61	7368003283445932	build.ninja	d3e45b0d19b5cd5f
-61	114	7368001207319736	siu.exe	bd1ec8489a951553
-2	60	7368001206798003	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.obj	8f68a3f6b1855a5d
-1	52	7368003293646393	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.obj	8f68a3f6b1855a5d
-52	104	7368003294134193	siu.exe	bd1ec8489a951553
-2	55	7368005870945923	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.obj	8f68a3f6b1855a5d
-55	107	7368005871448813	siu.exe	bd1ec8489a951553
-2	53	7368007495554543	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.obj	8f68a3f6b1855a5d
-53	105	7368007496046005	siu.exe	bd1ec8489a951553
+0	60	7376727209682545	build.ninja	d3e45b0d19b5cd5f
+55	106	7375296282178958	siu.exe	d7eecff523a363c7
+1	54	7375296281695440	CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.obj	5ba85978f08c8cb7
+0	135	7368340202056864	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.obj	8f68a3f6b1855a5d
