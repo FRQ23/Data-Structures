@@ -31,6 +31,7 @@ int comparar(Nodo* a, Nodo* b, int esMinHeap);
 void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos);
 void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap);
 
+/*
 void insertarDocumentosIniciales(Monton* monton) {
     agregarArchivo(monton, 10, "doc1");
     agregarArchivo(monton, 5, "doc2");
@@ -42,6 +43,8 @@ void insertarDocumentosIniciales(Monton* monton) {
     agregarArchivo(monton, 30, "doc8");
     printf("Documentos iniciales insertados.\n");
 }
+*/
+
 
 int main(void) {
     int opcion, paginas;
@@ -49,7 +52,7 @@ int main(void) {
     Monton* colaDeImpresion = crearMonton(10, 1); // heap min por defecto
 
     // Insertar documentos iniciales
-    insertarDocumentosIniciales(colaDeImpresion);
+    //insertarDocumentosIniciales(colaDeImpresion);
 
     while (1) {
         printf("\nMENU\n");
