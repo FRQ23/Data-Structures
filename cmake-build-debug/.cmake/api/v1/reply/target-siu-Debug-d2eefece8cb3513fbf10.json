@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "siu.exe"
-		},
-		{
-			"path" : "siu.pdb"
+			"path" : "siu"
 		}
 	],
 	"backtrace" : 1,
@@ -38,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu99 -fdiagnostics-color=always"
+					"fragment" : "-g -std=gnu99 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -mmacosx-version-min=13.6 -fcolor-diagnostics"
 				}
 			],
 			"language" : "C",
@@ -68,16 +65,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "C"
 	},
 	"name" : "siu",
-	"nameOnDisk" : "siu.exe",
+	"nameOnDisk" : "siu",
 	"paths" : 
 	{
 		"build" : ".",

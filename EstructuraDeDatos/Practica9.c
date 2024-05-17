@@ -258,3 +258,5 @@ void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap) {
         }
     }
 }
+
+// Path: EstructuraDeDatos/Practica9.c

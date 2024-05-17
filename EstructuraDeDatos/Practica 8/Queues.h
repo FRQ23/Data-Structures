@@ -1,14 +1,9 @@
-//
-// Created by Fertronic on 5/7/2024.
-//
-
-#ifndef SIU_QUEUES_H
-#define SIU_QUEUES_H
-
-
+#ifndef QUEUES_H
+#define QUEUES_H
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct dato
 {
@@ -35,21 +30,18 @@ typedef struct cola_2
     Cola *inicio;
     Cola *fin;
     short int cantidad_colas;
-    short int prioridad;
 }Cola_2;
 
-Cola_2* inicializarColaPrincipal();
-void agregarArchivo(Cola_2 *colaPrincipal);
-void mostrarColaImpresion(Cola_2 *colaPrincipal);
-void cambiarPrioridad(Cola_2 *colaPrincipal);
-void eliminarArchivo(Cola_2 *colaPrincipal);
-void eliminarTodosLosArchivos(Cola_2 *colaPrincipal);
-void procesarImprimirArchivo(Cola_2 *colaPrincipal);
-void liberarRecursos(Cola_2 *colaPrincipal);
-Nodo* crearNodo(Dato dato);
-Cola* buscarOCrearCola(Cola_2 *colaPrincipal, int paginas);
-void insertarEnCola(Cola *cola, Nodo *nuevoNodo);
-void mostrarArchivos(Cola *cola);
-void eliminarNodo(Cola *cola);
 
-#endif //SIU_QUEUES_HH
+typedef struct archivo_info {
+    char *nombre;
+    int paginas;
+} ArchivoInfo;
+
+
+void vaciarCola(Cola* cola);
+void eliminarCola(Cola_2* cola2, Cola* cola);
+Cola_2* crearCola_2();
+
+
+#endif
