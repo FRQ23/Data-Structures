@@ -129,29 +129,29 @@ siu/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/build
 .PHONY : siu/fast
 
-EstructuraDeDatos/Practica_8/Queues.o: EstructuraDeDatos/Practica_8/Queues.c.o
-.PHONY : EstructuraDeDatos/Practica_8/Queues.o
+EstructuraDeDatos/Practica9.o: EstructuraDeDatos/Practica9.c.o
+.PHONY : EstructuraDeDatos/Practica9.o
 
 # target to build an object file
-EstructuraDeDatos/Practica_8/Queues.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.o
-.PHONY : EstructuraDeDatos/Practica_8/Queues.c.o
+EstructuraDeDatos/Practica9.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.o
+.PHONY : EstructuraDeDatos/Practica9.c.o
 
-EstructuraDeDatos/Practica_8/Queues.i: EstructuraDeDatos/Practica_8/Queues.c.i
-.PHONY : EstructuraDeDatos/Practica_8/Queues.i
+EstructuraDeDatos/Practica9.i: EstructuraDeDatos/Practica9.c.i
+.PHONY : EstructuraDeDatos/Practica9.i
 
 # target to preprocess a source file
-EstructuraDeDatos/Practica_8/Queues.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.i
-.PHONY : EstructuraDeDatos/Practica_8/Queues.c.i
+EstructuraDeDatos/Practica9.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.i
+.PHONY : EstructuraDeDatos/Practica9.c.i
 
-EstructuraDeDatos/Practica_8/Queues.s: EstructuraDeDatos/Practica_8/Queues.c.s
-.PHONY : EstructuraDeDatos/Practica_8/Queues.s
+EstructuraDeDatos/Practica9.s: EstructuraDeDatos/Practica9.c.s
+.PHONY : EstructuraDeDatos/Practica9.s
 
 # target to generate assembly for a file
-EstructuraDeDatos/Practica_8/Queues.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica_8/Queues.c.s
-.PHONY : EstructuraDeDatos/Practica_8/Queues.c.s
+EstructuraDeDatos/Practica9.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.s
+.PHONY : EstructuraDeDatos/Practica9.c.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... siu"
-	@echo "... EstructuraDeDatos/Practica_8/Queues.o"
-	@echo "... EstructuraDeDatos/Practica_8/Queues.i"
-	@echo "... EstructuraDeDatos/Practica_8/Queues.s"
+	@echo "... EstructuraDeDatos/Practica9.o"
+	@echo "... EstructuraDeDatos/Practica9.i"
+	@echo "... EstructuraDeDatos/Practica9.s"
 .PHONY : help
 
 
