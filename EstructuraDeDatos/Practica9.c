@@ -162,25 +162,27 @@ void eliminarArchivo(Monton* monton, int indice) {
         printf("Índice no válido.\n");
         return;
     }
+
     Nodo* a_eliminar = monton->arreglo_nodos[indice];
     Nodo* ultimo = monton->arreglo_nodos[monton->num_nodos - 1];
 
-    // Reemplazar el nodo a eliminar con el último nodo
-    monton->arreglo_nodos[indice] = ultimo;
-    monton->num_nodos--;
+    // Mostrar la información del archivo que se va a eliminar
+    printf("Eliminando archivo: %s, Páginas: %d\n", a_eliminar->nombre, a_eliminar->paginas);
 
-    // Reorganizar el heap
-    heapifyDown(monton, indice);
-    if (monton->arreglo_nodos[indice] == ultimo) {
+    if (indice != monton->num_nodos - 1) {
+        monton->arreglo_nodos[indice] = ultimo;
+        // Reorganizar el heap
+        heapifyDown(monton, indice);
         heapifyUp(monton, indice);
     }
 
-    // Sincronizar el árbol
+    monton->num_nodos--;
     sincronizarArbol(monton->raiz, monton->arreglo_nodos, 0, monton->num_nodos);
 
     // Liberar el nodo eliminado
     free(a_eliminar);
 }
+
 
 void eliminarTodosLosArchivos(Monton* monton) {
     for (int i = 0; i < monton->num_nodos; i++) {
@@ -258,5 +260,3 @@ void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap) {
         }
     }
 }
-
-// Path: EstructuraDeDatos/Practica9.c
