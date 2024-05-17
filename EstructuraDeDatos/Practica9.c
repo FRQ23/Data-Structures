@@ -31,7 +31,6 @@ int comparar(Nodo* a, Nodo* b, int esMinHeap);
 void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos);
 void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap);
 
-
 void insertarDocumentosIniciales(Monton* monton) {
     agregarArchivo(monton, 10, "doc1");
     agregarArchivo(monton, 5, "doc2");
@@ -44,11 +43,10 @@ void insertarDocumentosIniciales(Monton* monton) {
     printf("Documentos iniciales insertados.\n");
 }
 
-
 int main(void) {
     int opcion, paginas;
     char nombre[50];
-    Monton* colaDeImpresion = crearMonton(10, 1); // heap min por defecto
+    Monton* colaDeImpresion = crearMonton(1000, 1); // heap min por defecto
 
     // Insertar documentos iniciales
     insertarDocumentosIniciales(colaDeImpresion);
@@ -167,17 +165,28 @@ void eliminarArchivo(Monton* monton, int indice) {
 
     Nodo* ultimo = monton->arreglo_nodos[monton->num_nodos - 1];
     Nodo* a_eliminar = monton->arreglo_nodos[indice];
-    monton->arreglo_nodos[indice] = ultimo;
-    monton->num_nodos--;
+    if (indice != monton->num_nodos - 1) {
+        monton->arreglo_nodos[indice] = ultimo;
+        monton->num_nodos--;
 
-    if (indice < monton->num_nodos) {
-        heapifyDown(monton, indice);
-        heapifyUp(monton, indice);  // En caso de que el nuevo nodo necesite subir.
+        heapifyDown(monton, indice); // Ajustar heap hacia abajo primero
+        if (comparar(monton->arreglo_nodos[indice], ultimo, monton->esMinHeap)) {
+            heapifyUp(monton, indice); // Luego ajustar hacia arriba si es necesario
+        }
+    } else {
+        monton->num_nodos--; // Solo decrementar si estamos eliminando el último nodo
     }
 
     free(a_eliminar);
-    sincronizarArbol(monton->raiz, monton->arreglo_nodos, 0, monton->num_nodos);
+    if (monton->num_nodos > 0) {
+        sincronizarArbol(monton->arreglo_nodos[0], monton->arreglo_nodos, 0, monton->num_nodos);
+    } else {
+        monton->raiz = NULL; // Si no quedan nodos, la raíz debe ser NULL
+    }
 }
+
+
+
 
 void eliminarTodosLosArchivos(Monton* monton) {
     for (int i = 0; i < monton->num_nodos; i++) {
@@ -234,13 +243,17 @@ int comparar(Nodo* a, Nodo* b, int esMinHeap) {
 }
 
 void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos) {
-    if (idx >= num_nodos) return;
-    nodo = arreglo[idx];
-    nodo->izq = (2 * idx + 1 < num_nodos) ? arreglo[2 * idx + 1] : NULL;
-    nodo->dch = (2 * idx + 2 < num_nodos) ? arreglo[2 * idx + 2] : NULL;
+    if (idx >= num_nodos) return; // Si el índice es mayor o igual al número de nodos, salir.
+
+    nodo = arreglo[idx]; // Asignar el nodo del arreglo al nodo actual.
+    nodo->izq = (2 * idx + 1 < num_nodos) ? arreglo[2 * idx + 1] : NULL; // Asignar hijo izquierdo si existe.
+    nodo->dch = (2 * idx + 2 < num_nodos) ? arreglo[2 * idx + 2] : NULL; // Asignar hijo derecho si existe.
+
+    // Llamar recursivamente para sincronizar subárbol izquierdo y derecho.
     if (nodo->izq) sincronizarArbol(nodo->izq, arreglo, 2 * idx + 1, num_nodos);
     if (nodo->dch) sincronizarArbol(nodo->dch, arreglo, 2 * idx + 2, num_nodos);
 }
+
 
 void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap) {
     for (int i = 0; i < num_nodos - 1; i++) {
