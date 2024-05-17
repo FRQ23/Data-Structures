@@ -45,7 +45,6 @@ void insertarDocumentosIniciales(Monton* monton) {
 }
 
 
-
 int main(void) {
     int opcion, paginas;
     char nombre[50];
@@ -165,13 +164,18 @@ void eliminarArchivo(Monton* monton, int indice) {
         printf("Índice no válido.\n");
         return;
     }
+
     Nodo* ultimo = monton->arreglo_nodos[monton->num_nodos - 1];
     Nodo* a_eliminar = monton->arreglo_nodos[indice];
     monton->arreglo_nodos[indice] = ultimo;
     monton->num_nodos--;
 
+    if (indice < monton->num_nodos) {
+        heapifyDown(monton, indice);
+        heapifyUp(monton, indice);  // En caso de que el nuevo nodo necesite subir.
+    }
+
     free(a_eliminar);
-    heapifyDown(monton, indice);
     sincronizarArbol(monton->raiz, monton->arreglo_nodos, 0, monton->num_nodos);
 }
 
@@ -204,30 +208,29 @@ void heapifyUp(Monton* monton, int idx) {
 }
 
 void heapifyDown(Monton* monton, int idx) {
-    int hijo_izq = 2 * idx + 1;
-    int hijo_dch = 2 * idx + 2;
     int menor_mayor = idx;
+    while (1) {
+        int hijo_izq = 2 * menor_mayor + 1;
+        int hijo_dch = 2 * menor_mayor + 2;
 
-    if (hijo_izq < monton->num_nodos && comparar(monton->arreglo_nodos[hijo_izq], monton->arreglo_nodos[menor_mayor], monton->esMinHeap)) {
-        menor_mayor = hijo_izq;
-    }
-    if (hijo_dch < monton->num_nodos && comparar(monton->arreglo_nodos[hijo_dch], monton->arreglo_nodos[menor_mayor], monton->esMinHeap)) {
-        menor_mayor = hijo_dch;
-    }
-    if (menor_mayor != idx) {
+        if (hijo_izq < monton->num_nodos && comparar(monton->arreglo_nodos[hijo_izq], monton->arreglo_nodos[menor_mayor], monton->esMinHeap)) {
+            menor_mayor = hijo_izq;
+        }
+        if (hijo_dch < monton->num_nodos && comparar(monton->arreglo_nodos[hijo_dch], monton->arreglo_nodos[menor_mayor], monton->esMinHeap)) {
+            menor_mayor = hijo_dch;
+        }
+        if (menor_mayor == idx) {
+            break;
+        }
         Nodo* temp = monton->arreglo_nodos[idx];
         monton->arreglo_nodos[idx] = monton->arreglo_nodos[menor_mayor];
         monton->arreglo_nodos[menor_mayor] = temp;
-        heapifyDown(monton, menor_mayor);
+        idx = menor_mayor;
     }
 }
 
 int comparar(Nodo* a, Nodo* b, int esMinHeap) {
-    if (esMinHeap) {
-        return a->paginas < b->paginas;
-    } else {
-        return a->paginas > b->paginas;
-    }
+    return esMinHeap ? a->paginas < b->paginas : a->paginas > b->paginas;
 }
 
 void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos) {
