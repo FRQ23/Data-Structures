@@ -30,6 +30,7 @@ void heapifyDown(Monton* monton, int idx);
 int comparar(Nodo* a, Nodo* b, int esMinHeap);
 void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos);
 void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap);
+void eliminarArchivoPorPaginas(Monton* monton, int paginas);
 
 void insertarDocumentosIniciales(Monton* monton) {
     agregarArchivo(monton, 10, "doc1");
@@ -78,10 +79,9 @@ int main(void) {
                 agregarArchivo(colaDeImpresion, paginas, nombre);
                 break;
             case 3:
-                mostrarColaDeImpresion(colaDeImpresion);
-                printf("Seleccione el índice del archivo a eliminar: ");
-                scanf("%d", &opcion);
-                eliminarArchivo(colaDeImpresion, opcion);
+                printf("Ingrese el número de páginas del archivo que desea eliminar: ");
+                scanf("%d", &paginas);
+                eliminarArchivoPorPaginas(colaDeImpresion, paginas);
                 break;
             case 4:
                 eliminarTodosLosArchivos(colaDeImpresion);
@@ -154,6 +154,9 @@ void agregarArchivo(Monton* monton, int paginas, const char* nombre) {
     monton->arreglo_nodos[monton->num_nodos] = nuevo;
     heapifyUp(monton, monton->num_nodos);
     monton->num_nodos++;
+    if (monton->num_nodos == 1) {
+        monton->raiz = nuevo;
+    }
     sincronizarArbol(monton->raiz, monton->arreglo_nodos, 0, monton->num_nodos);
 }
 
@@ -163,18 +166,16 @@ void eliminarArchivo(Monton* monton, int indice) {
         return;
     }
 
-    Nodo* ultimo = monton->arreglo_nodos[monton->num_nodos - 1];
     Nodo* a_eliminar = monton->arreglo_nodos[indice];
-    if (indice != monton->num_nodos - 1) {
-        monton->arreglo_nodos[indice] = ultimo;
-        monton->num_nodos--;
+    printf("Eliminando archivo: %s\n", a_eliminar->nombre); // Mostrar el nombre del archivo a eliminar
 
-        heapifyDown(monton, indice); // Ajustar heap hacia abajo primero
-        if (comparar(monton->arreglo_nodos[indice], ultimo, monton->esMinHeap)) {
-            heapifyUp(monton, indice); // Luego ajustar hacia arriba si es necesario
-        }
-    } else {
-        monton->num_nodos--; // Solo decrementar si estamos eliminando el último nodo
+    Nodo* ultimo = monton->arreglo_nodos[monton->num_nodos - 1];
+    monton->arreglo_nodos[indice] = ultimo;
+    monton->num_nodos--;
+
+    if (indice < monton->num_nodos) {
+        heapifyDown(monton, indice);
+        heapifyUp(monton, indice); // Opcional, puede ayudar a mantener el orden si heapifyDown no es suficiente
     }
 
     free(a_eliminar);
@@ -185,23 +186,23 @@ void eliminarArchivo(Monton* monton, int indice) {
     }
 }
 
-
-
-
 void eliminarTodosLosArchivos(Monton* monton) {
     for (int i = 0; i < monton->num_nodos; i++) {
         free(monton->arreglo_nodos[i]);
     }
     monton->num_nodos = 0;
+    monton->raiz = NULL;
     printf("Todos los archivos han sido eliminados.\n");
 }
 
 void procesarArchivo(Monton* monton) {
     if (monton->num_nodos == 0) {
-        printf("La cola de impresión está vacía.\n");
+        printf("No hay archivos para procesar.\n");
         return;
     }
-    printf("Procesando archivo: %s, Páginas: %d\n", monton->arreglo_nodos[0]->nombre, monton->arreglo_nodos[0]->paginas);
+
+    Nodo* a_procesar = monton->arreglo_nodos[0];
+    printf("Procesando archivo: %s\n", a_procesar->nombre);
     eliminarArchivo(monton, 0);
 }
 
@@ -239,6 +240,9 @@ void heapifyDown(Monton* monton, int idx) {
 }
 
 int comparar(Nodo* a, Nodo* b, int esMinHeap) {
+    if (a->paginas == b->paginas) {
+        return esMinHeap ? strcmp(a->nombre, b->nombre) < 0 : strcmp(a->nombre, b->nombre) > 0;
+    }
     return esMinHeap ? a->paginas < b->paginas : a->paginas > b->paginas;
 }
 
@@ -254,16 +258,45 @@ void sincronizarArbol(Nodo* nodo, Nodo** arreglo, int idx, int num_nodos) {
     if (nodo->dch) sincronizarArbol(nodo->dch, arreglo, 2 * idx + 2, num_nodos);
 }
 
-
 void ordenarArregloNodos(Nodo** arreglo, int num_nodos, int esMinHeap) {
     for (int i = 0; i < num_nodos - 1; i++) {
         for (int j = 0; j < num_nodos - i - 1; j++) {
-            if ((esMinHeap && arreglo[j]->paginas > arreglo[j + 1]->paginas) ||
-                (!esMinHeap && arreglo[j]->paginas < arreglo[j + 1]->paginas)) {
+            if (!comparar(arreglo[j], arreglo[j + 1], esMinHeap)) {
                 Nodo* temp = arreglo[j];
                 arreglo[j] = arreglo[j + 1];
                 arreglo[j + 1] = temp;
             }
         }
+    }
+}
+
+void eliminarArchivoPorPaginas(Monton* monton, int paginas) {
+    int indices[monton->num_nodos];
+    int contador = 0;
+
+    for (int i = 0; i < monton->num_nodos; i++) {
+        if (monton->arreglo_nodos[i]->paginas == paginas) {
+            indices[contador++] = i;
+        }
+    }
+
+    if (contador == 0) {
+        printf("No se encontraron archivos con %d páginas.\n", paginas);
+        return;
+    }
+
+    printf("Seleccione el archivo a eliminar:\n");
+    for (int i = 0; i < contador; i++) {
+        printf("[%d] %s, %d páginas\n", i, monton->arreglo_nodos[indices[i]]->nombre, monton->arreglo_nodos[indices[i]]->paginas);
+    }
+
+    int opcion;
+    printf("Ingrese el número correspondiente al archivo que desea eliminar: ");
+    scanf("%d", &opcion);
+
+    if (opcion >= 0 && opcion < contador) {
+        eliminarArchivo(monton, indices[opcion]);
+    } else {
+        printf("Opción no válida.\n");
     }
 }

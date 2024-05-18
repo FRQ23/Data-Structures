@@ -78,10 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica 8/Queues.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica 8/Queues.h">
+		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica9.c">
 			<Option target="siu"/>
 		</Unit>
 		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures/CMakeLists.txt">
