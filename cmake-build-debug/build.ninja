@@ -49,11 +49,23 @@ cmake_ninja_workdir = C$:/Users/PC$ TENSE/CLionProjects/siu/cmake-build-debug/
 
 build cmake_object_order_depends_target_siu: phony || CMakeFiles/siu.dir
 
-build CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica9.c || cmake_object_order_depends_target_siu
-  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica9.c.obj.d
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_9/Practica9.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 9/Practica9.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_9\Practica9.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\siu.dir
-  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_9
+
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_10/main.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 10/main.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_10\main.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_10
+
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_10/hash.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 10/hash.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_10\hash.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_10
 
 
 # =============================================================================
@@ -63,7 +75,7 @@ build CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.obj: C_COMPILER__siu_unsc
 #############################################
 # Link the executable siu.exe
 
-build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.obj
+build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/EstructuraDeDatos/Practica_9/Practica9.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_10/main.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_10/hash.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\siu.dir
