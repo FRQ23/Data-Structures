@@ -136,5 +136,5 @@ void printMovie(Movie *movie)
 {
     printf("%-3d | %-50s | %d | %d ",movie->id, movie->name,movie->release_date,movie->rating);
     printf("\n");
-    //printf("%-2d | %-48s | %d | %d",pelicula->id,pelicula->nombre,pelicula->fecha,pelicula->calificacion);
+    printf("%-2d | %-48s | %d | %d",pelicula->id,pelicula->nombre,pelicula->fecha,pelicula->calificacion);
 }
