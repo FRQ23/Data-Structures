@@ -1,0 +1,501 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define NAME_SIZE 100
+
+typedef struct Movie {
+    int id;
+    char name[NAME_SIZE];
+    int year;
+    int rating;
+    struct Movie* next;
+} Movie;
+
+typedef struct {
+    Movie** table;
+    int size;
+    int count;
+} HashTable;
+
+// Function prototypes
+HashTable* create_table(int size);
+void free_table(HashTable* table);
+unsigned int hash_id(int id, int size);
+unsigned int hash_name(char* name, int size);
+void insert_movie(HashTable* id_table, HashTable* name_table, int id, char* name, int year, int rating);
+void delete_movie_by_id(HashTable* id_table, HashTable* name_table, int id);
+void delete_movie_by_name(HashTable* name_table, HashTable* id_table, char* name);
+void search_movie_by_name(HashTable* name_table, char* name);
+Movie* search_movie_by_id(HashTable* id_table, int id);
+void print_table(HashTable* table);
+void create_movies(HashTable* id_table, HashTable* name_table, int size_data);
+
+int main() {
+    int size_data = 105;  // Inicializar con un valor de 105
+    int id_counter = size_data;
+    HashTable* id_table = create_table(size_data);
+    HashTable* name_table = create_table(size_data * 4);
+
+    create_movies(id_table, name_table, size_data);
+
+    int choice;
+    int id, year, rating;
+    char name[NAME_SIZE];
+
+    while (1) {
+        printf("\nMenu:\n");
+        printf("[0] MOSTRAR HASH ID\n");
+        printf("[1] MOSTRAR HASH NOMBRE\n");
+        printf("[2] BUSCAR PELICULA ID\n");
+        printf("[3] BUSCAR PELICULA NOMBRE\n");
+        printf("[4] AGREGAR PELICULA\n");
+        printf("[5] ELIMINAR PELICULA\n");
+        printf("[6] TERMINAR PROGRAMA\n");
+        printf("Elija una opcion: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 0:
+                printf("Contenido de la tabla hash por ID:\n");
+                print_table(id_table);
+                break;
+            case 1:
+                printf("Contenido de la tabla hash por Nombre:\n");
+                print_table(name_table);
+                break;
+            case 2:
+                printf("Ingrese el ID de la pelicula: ");
+                scanf("%d", &id);
+                {
+                    Movie* movie = search_movie_by_id(id_table, id);
+                    if (movie) {
+                        printf("Pelicula encontrada: ID=%d, Nombre=%s, Año=%d, Calificación=%d\n", movie->id, movie->name, movie->year, movie->rating);
+                    } else {
+                        printf("Pelicula no encontrada.\n");
+                    }
+                }
+                break;
+            case 3:
+                printf("Ingrese el nombre de la pelicula: ");
+                scanf("%s", name);
+                search_movie_by_name(name_table, name);
+                break;
+            case 4:
+                printf("Ingrese el nombre de la pelicula: ");
+                scanf("%s", name);
+                printf("Ingrese el año de la pelicula: ");
+                scanf("%d", &year);
+                printf("Ingrese la calificación de la pelicula: ");
+                scanf("%d", &rating);
+                insert_movie(id_table, name_table, ++id_counter, name, year, rating);
+                break;
+            case 5:
+                printf("Desea eliminar por [1] ID o [2] Nombre? ");
+                int delete_choice;
+                scanf("%d", &delete_choice);
+                if (delete_choice == 1) {
+                    printf("Ingrese el ID de la pelicula: ");
+                    scanf("%d", &id);
+                    delete_movie_by_id(id_table, name_table, id);
+                } else if (delete_choice == 2) {
+                    printf("Ingrese el nombre de la pelicula: ");
+                    scanf("%s", name);
+                    delete_movie_by_name(name_table, id_table, name);
+                } else {
+                    printf("Opcion no valida.\n");
+                }
+                break;
+            case 6:
+                free_table(id_table);
+                free_table(name_table);
+                return 0;
+            default:
+                printf("Opcion no valida.\n");
+                break;
+        }
+    }
+    return 0;
+}
+
+HashTable* create_table(int size) {
+    HashTable* table = (HashTable*)malloc(sizeof(HashTable));
+    table->size = size;
+    table->count = 0;
+    table->table = (Movie**)malloc(size * sizeof(Movie*));
+    for (int i = 0; i < size; i++) {
+        table->table[i] = NULL;
+    }
+    return table;
+}
+
+void free_table(HashTable* table) {
+    for (int i = 0; i < table->size; i++) {
+        Movie* movie = table->table[i];
+        while (movie) {
+            Movie* temp = movie;
+            movie = movie->next;
+            free(temp);
+        }
+    }
+    free(table->table);
+    free(table);
+}
+
+unsigned int hash_id(int id, int size) {
+    return id % size;
+}
+
+unsigned int hash_name(char* name, int size) {
+    unsigned int hash = 0;
+    for (int i = 0; name[i] != '\0'; i++) {
+        hash = (hash << 5) + name[i];
+    }
+    return hash % size;
+}
+
+void insert_movie(HashTable* id_table, HashTable* name_table, int id, char* name, int year, int rating) {
+    // Verificar si la tabla de ID está llena y necesita ser ampliada
+    if (id_table->count >= id_table->size) {
+        int new_size = id_table->size * 2;
+        Movie** new_table = (Movie**)malloc(new_size * sizeof(Movie*));
+        for (int i = 0; i < new_size; i++) {
+            new_table[i] = NULL;
+        }
+        // Rehashing de los elementos a la nueva tabla
+        for (int i = 0; i < id_table->size; i++) {
+            Movie* movie = id_table->table[i];
+            while (movie) {
+                unsigned int new_index = hash_id(movie->id, new_size);
+                Movie* next_movie = movie->next;
+                movie->next = new_table[new_index];
+                new_table[new_index] = movie;
+                movie = next_movie;
+            }
+        }
+        free(id_table->table);
+        id_table->table = new_table;
+        id_table->size = new_size;
+    }
+
+    // Insertar en la tabla de ID
+    unsigned int index_id = hash_id(id, id_table->size);
+    Movie* new_movie_id = (Movie*)malloc(sizeof(Movie));
+    new_movie_id->id = id;
+    strcpy(new_movie_id->name, name);
+    new_movie_id->year = year;
+    new_movie_id->rating = rating;
+    new_movie_id->next = id_table->table[index_id];
+    id_table->table[index_id] = new_movie_id;
+    id_table->count++;
+
+    // Verificar si la tabla de nombres necesita ser ampliada
+    if ((float)name_table->count / name_table->size >= 0.75) {
+        int new_size = name_table->size * 2;
+        Movie** new_table = (Movie**)malloc(new_size * sizeof(Movie*));
+        for (int i = 0; i < new_size; i++) {
+            new_table[i] = NULL;
+        }
+        // Rehashing de los elementos a la nueva tabla
+        for (int i = 0; i < name_table->size; i++) {
+            Movie* movie = name_table->table[i];
+            while (movie) {
+                unsigned int new_index = hash_name(movie->name, new_size);
+                Movie* next_movie = movie->next;
+                movie->next = new_table[new_index];
+                new_table[new_index] = movie;
+                movie = next_movie;
+            }
+        }
+        free(name_table->table);
+        name_table->table = new_table;
+        name_table->size = new_size;
+    }
+
+    // Insertar en la tabla de nombres
+    unsigned int index_name = hash_name(name, name_table->size);
+    Movie* new_movie_name = (Movie*)malloc(sizeof(Movie));
+    new_movie_name->id = id;
+    strcpy(new_movie_name->name, name);
+    new_movie_name->year = year;
+    new_movie_name->rating = rating;
+    new_movie_name->next = name_table->table[index_name];
+    name_table->table[index_name] = new_movie_name;
+    name_table->count++;
+}
+
+
+void delete_movie_by_id(HashTable* id_table, HashTable* name_table, int id) {
+  unsigned int index_id = hash_id(id, id_table->size);
+  Movie* movie = id_table->table[index_id];
+  Movie* prev = NULL;
+
+  // Buscar la película en la tabla de ID
+  while (movie && movie->id != id) {
+      prev = movie;
+      movie = movie->next;
+  }
+
+  // Si la película fue encontrada, eliminarla
+  if (movie) {
+      if (prev) {
+          prev->next = movie->next;
+      } else {
+          id_table->table[index_id] = movie->next;
+      }
+
+      unsigned int index_name = hash_name(movie->name, name_table->size);
+      Movie* name_movie = name_table->table[index_name];
+      Movie* prev_name = NULL;
+
+      // Buscar la película en la tabla de nombres
+      while (name_movie && name_movie->id != id) {
+          prev_name = name_movie;
+          name_movie = name_movie->next;
+      }
+
+      // Si la película fue encontrada, eliminarla
+      if (name_movie) {
+          if (prev_name) {
+              prev_name->next = name_movie->next;
+          } else {
+              name_table->table[index_name] = name_movie->next;
+          }
+          free(name_movie);
+      }
+
+      free(movie);
+      id_table->count--;
+      name_table->count--;
+      printf("Pelicula con ID %d eliminada.\n", id);
+  } else {
+      printf("Pelicula con ID %d no encontrada.\n", id);
+  }
+}
+
+void delete_movie_by_name(HashTable* name_table, HashTable* id_table, char* name) {
+  unsigned int index_name = hash_name(name, name_table->size);
+  Movie* movie = name_table->table[index_name];
+  Movie* prev = NULL;
+  int found = 0;
+
+  // Mostrar todas las películas con el nombre dado
+  printf("Peliculas encontradas con el nombre \"%s\":\n", name);
+  while (movie) {
+      if (strcmp(movie->name, name) == 0) {
+          printf("ID=%d, Año=%d, Calificación=%d\n", movie->id, movie->year, movie->rating);
+          found = 1;
+      }
+      movie = movie->next;
+  }
+
+  if (found) {
+      int id_to_delete;
+      printf("Ingrese el ID de la pelicula que desea eliminar: ");
+      scanf("%d", &id_to_delete);
+
+      movie = name_table->table[index_name];
+      prev = NULL;
+
+      // Buscar la película específica por ID en la lista de películas con el mismo nombre
+      while (movie && movie->id != id_to_delete) {
+          prev = movie;
+          movie = movie->next;
+      }
+
+      // Si la película fue encontrada, eliminarla
+      if (movie) {
+          if (prev) {
+              prev->next = movie->next;
+          } else {
+              name_table->table[index_name] = movie->next;
+          }
+
+          unsigned int index_id = hash_id(movie->id, id_table->size);
+          Movie* id_movie = id_table->table[index_id];
+          Movie* prev_id = NULL;
+
+          // Buscar la película en la tabla de ID
+          while (id_movie && id_movie->id != movie->id) {
+              prev_id = id_movie;
+              id_movie = id_movie->next;
+          }
+
+          // Si la película fue encontrada, eliminarla
+          if (id_movie) {
+              if (prev_id) {
+                  prev_id->next = id_movie->next;
+              } else {
+                  id_table->table[index_id] = id_movie->next;
+              }
+              free(id_movie);
+          }
+
+          free(movie);
+          name_table->count--;
+          id_table->count--;
+          printf("Pelicula con nombre %s e ID %d eliminada.\n", name, id_to_delete);
+      } else {
+          printf("ID de pelicula invalido. La pelicula no fue encontrada.\n");
+      }
+  } else {
+      printf("No se encontraron peliculas con ese nombre.\n");
+  }
+}
+
+
+Movie* search_movie_by_id(HashTable* id_table, int id) {
+    unsigned int index = hash_id(id, id_table->size);
+    Movie* movie = id_table->table[index];
+    while (movie && movie->id != id) {
+        movie = movie->next;
+    }
+    return movie;
+}
+
+void search_movie_by_name(HashTable* name_table, char* name) {
+    unsigned int index = hash_name(name, name_table->size);
+    Movie* movie = name_table->table[index];
+    int found = 0;
+    printf("Resultados de la búsqueda para el nombre \"%s\":\n", name);
+    while (movie) {
+        if (strcmp(movie->name, name) == 0) {
+            printf("Pelicula encontrada: ID=%d, Nombre=%s, Año=%d, Calificación=%d\n", movie->id, movie->name, movie->year, movie->rating);
+            found = 1;
+        }
+        movie = movie->next;
+    }
+    if (!found) {
+        printf("Pelicula no encontrada.\n");
+    }
+}
+
+
+void print_table(HashTable* table) {
+    printf("Tamaño de la tabla: %d\n", table->size);
+    printf("Número de elementos en la tabla: %d\n", table->count);
+    printf("----------------------------------------------\n");
+    printf("Índice   | ID   | Nombre       | Año   | Calificación\n");
+    printf("----------------------------------------------\n");
+    for (int i = 0; i < table->size; i++) {
+        Movie* movie = table->table[i];
+        while (movie) {
+            printf("%-9d| %-5d| %-13s| %-6d| %-13d\n", i, movie->id, movie->name, movie->year, movie->rating);
+            movie = movie->next;
+        }
+    }
+}
+
+void create_movies(HashTable* id_table, HashTable* name_table, int size_data) {
+    Movie movies[105] = {
+        {1, "Blade Runner 2049", 2017, 80},
+        {2, "Interstellar", 2014, 87},
+        {3, "Mad Max: Fury Road", 2015, 81},
+        {4, "Children of Men", 2006, 79},
+        {5, "Inception", 2010, 88},
+        {6, "Tenet", 2020, 73},
+        {7, "Once Upon a Time... In Hollywood", 2019, 76},
+        {8, "Inglourious Basterds", 2009, 84},
+        {9, "The Lord of the Rings: The Return of the King", 2003, 90},
+        {10, "The Wolf of Wall Street", 2013, 82},
+        {11, "Disturbia", 2007, 68},
+        {12, "Dunkirk", 2017, 78},
+        {13, "Troy", 2004, 73},
+        {14, "The Dark Knight", 2008, 90},
+        {15, "Forrest Gump", 1994, 88},
+        {16, "Fight Club", 1999, 88},
+        {17, "Star Wars: Episode V - Empire Strikes Back", 1980, 87},
+        {18, "The Silence of the Lambs", 1991, 86},
+        {19, "Saving Private Ryan", 1998, 86},
+        {20, "The Departed", 2006, 85},
+        {21, "Whiplash", 2014, 85},
+        {22, "Spider-Man: Into the Spider-Verse", 2018, 85},
+        {23, "Avengers: Infinity War", 2018, 84},
+        {24, "Django Unchained", 2012, 85},
+        {25, "The Ministry of Ungentlemanly Warfare", 2024, 73},
+        {26, "Godzilla x Kong: The New Empire", 2024, 65},
+        {27, "Monkey Man", 2024, 71},
+        {28, "Road House", 2024, 62},
+        {29, "Rebel Moon - Part Two: The Scargiver", 2024, 52},
+        {30, "Wish", 2023, 56},
+        {31, "Anyone But You", 2023, 62},
+        {32, "The Fall Guy", 2024, 74},
+        {33, "The Bricklayer", 2023, 51},
+        {34, "Anatomy of a Fall", 2023, 77},
+        {35, "Hit Man", 2023, 77},
+        {36, "Glass", 2019, 66},
+        {37, "Barbie", 2023, 68},
+        {38, "Stolen", 2024, 56},
+        {39, "Madame Web", 2024, 38},
+        {40, "Joker", 2019, 84},
+        {41, "The Shawshank Redemption", 1994, 93},
+        {42, "Pulp Fiction", 1994, 92},
+        {43, "Titanic", 1997, 89},
+        {44, "The Matrix", 1999, 87},
+        {45, "The Sixth Sense", 1999, 85},
+        {46, "Gladiator", 2000, 86},
+        {47, "Memento", 2000, 85},
+        {48, "The Lord of the Rings: The Fellowship of the Ring", 2001, 88},
+        {49, "A Beautiful Mind", 2001, 86},
+        {50, "Spirited Away", 2001, 89},
+        {51, "The Lord of the Rings: The Two Towers", 2002, 89},
+        {52, "Finding Nemo", 2003, 90},
+        {53, "The Incredibles", 2004, 89},
+        {54, "Eternal Sunshine of the Spotless Mind", 2004, 88},
+        {55, "Million Dollar Baby", 2004, 87},
+        {56, "Brokeback Mountain", 2005, 87},
+        {57, "Crash", 2004, 78},
+        {58, "Pan's Labyrinth", 2006, 89},
+        {59, "The Prestige", 2006, 88},
+        {60, "No Country for Old Men", 2007, 90},
+        {61, "There Will Be Blood", 2007, 89},
+        {62, "WALL-E", 2008, 89},
+        {63, "Slumdog Millionaire", 2008, 88},
+        {64, "The Dark Knight", 2008, 90},
+        {65, "Up", 2009, 88},
+        {66, "Avatar", 2009, 83},
+        {67, "Inception", 2010, 88},
+        {68, "Toy Story 3", 2010, 87},
+        {69, "Black Swan", 2010, 85},
+        {70, "The Social Network", 2010, 88},
+        {71, "The King's Speech", 2010, 87},
+        {72, "The Artist", 2011, 88},
+        {73, "Hugo", 2011, 87},
+        {74, "The Help", 2011, 81},
+        {75, "The Avengers", 2012, 85},
+        {76, "Django Unchained", 2012, 87},
+        {77, "Life of Pi", 2012, 86},
+        {78, "Gravity", 2013, 87},
+        {79, "12 Years a Slave", 2013, 88},
+        {80, "Her", 2013, 89},
+        {81, "Boyhood", 2014, 87},
+        {82, "Birdman or (The Unexpected Virtue of Ignorance)", 2014, 88},
+        {83, "The Grand Budapest Hotel", 2014, 87},
+        {84, "Spotlight", 2015, 88},
+        {85, "Mad Max: Fury Road", 2015, 90},
+        {86, "The Revenant", 2015, 88},
+        {87, "La La Land", 2016, 89},
+        {88, "Arrival", 2016, 88},
+        {89, "Moonlight", 2016, 88},
+        {90, "Get Out", 2017, 87},
+        {91, "Dunkirk", 2017, 89},
+        {92, "The Shape of Water", 2017, 87},
+        {93, "Three Billboards Outside Ebbing, Missouri", 2017, 88},
+        {94, "Coco", 2017, 89},
+        {95, "Call Me by Your Name", 2017, 88},
+        {96, "Lady Bird", 2017, 87},
+        {97, "Bohemian Rhapsody", 2018, 88},
+        {98, "A Star is Born", 2018, 87},
+        {99, "Black Panther", 2018, 88},
+        {100, "Parasite", 2019, 89},
+        {101, "Jojo Rabbit", 2019, 87},
+        {102, "Joker", 2019, 86},
+        {103, "Once Upon a Time... In Hollywood", 2019, 88},
+        {104, "1917", 2019, 88},
+        {105, "The Irishman", 2019, 87}
+    };
+
+    for (int i = 0; i < size_data; i++) {
+        insert_movie(id_table, name_table, movies[i].id, movies[i].name, movies[i].year, movies[i].rating);
+    }
+}
