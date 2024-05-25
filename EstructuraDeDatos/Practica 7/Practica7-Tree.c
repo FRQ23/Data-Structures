@@ -1,35 +1,38 @@
-//
-// Created by Fernando Rosales on 4/29/24.
-//
-
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 #include <math.h>
 
-#define MAX_EXPR_LEN 256
 #define NUM_VARIABLES 26 // Número de variables posibles de 'a' a 'z'
+#define MAX_EXPR_LEN 256
 
-// Estructura para representar una pila
+typedef struct ExprNode {
+    char op;
+    double value;
+    struct ExprNode *left;
+    struct ExprNode *right;
+} ExprNode;
+
 typedef struct {
     int top;
-    double items[MAX_EXPR_LEN];
+    ExprNode* items[MAX_EXPR_LEN];
 } Stack;
 
-// Prototipo de funciones
-double evaluateExpression(char *expr, double vars[NUM_VARIABLES]);
-void push(Stack *s, double value);
-double pop(Stack *s);
-int isEmpty(Stack *s);
-int precedence(char op);
-double operate(double a, double b, char op);
+ExprNode* createNode(char op, double value) {
+    ExprNode* node = (ExprNode*)malloc(sizeof(ExprNode));
+    node->op = op;
+    node->value = value;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
 
-// Funciones para manejar la pila
-void push(Stack *s, double value) {
+void push(Stack *s, ExprNode* value) {
     s->items[++(s->top)] = value;
 }
 
-double pop(Stack *s) {
+ExprNode* pop(Stack *s) {
     return s->items[(s->top)--];
 }
 
@@ -37,7 +40,37 @@ int isEmpty(Stack *s) {
     return s->top == -1;
 }
 
-// Función para determinar la precedencia de los operadores
+ExprNode* buildExpressionTree(char *expr, double vars[NUM_VARIABLES]);
+double evaluateExpressionTree(ExprNode *root);
+void freeExpressionTree(ExprNode *root);
+
+double evaluateExpressionTree(ExprNode *root) {
+    if (!root) return 0;
+
+    if (!root->left && !root->right) {
+        return root->value;
+    }
+
+    double left_val = evaluateExpressionTree(root->left);
+    double right_val = evaluateExpressionTree(root->right);
+
+    switch (root->op) {
+        case '+': return left_val + right_val;
+        case '-': return left_val - right_val;
+        case '*': return left_val * right_val;
+        case '/': return left_val / right_val;
+        case '^': return pow(left_val, right_val);
+        default: return 0;
+    }
+}
+
+void freeExpressionTree(ExprNode *root) {
+    if (!root) return;
+    freeExpressionTree(root->left);
+    freeExpressionTree(root->right);
+    free(root);
+}
+
 int precedence(char op) {
     switch (op) {
         case '+':
@@ -53,62 +86,52 @@ int precedence(char op) {
     }
 }
 
-// Función para evaluar una operación
-double operate(double a, double b, char op) {
-    switch (op) {
-        case '+': return a + b;
-        case '-': return a - b;
-        case '*': return a * b;
-        case '/': return a / b;
-        case '^': return pow(a, b);
-        default: return 0;
-    }
-}
+ExprNode* buildExpressionTree(char *expr, double vars[NUM_VARIABLES]) {
+    int i = 0;
+    int len = strlen(expr);
 
-// Función para evaluar la expresión
-double evaluateExpression(char *expr, double vars[NUM_VARIABLES]) {
-    Stack values = { .top = -1 };  // Inicializar la pila
-    Stack ops = { .top = -1 };     // Inicializar la pila
+    Stack values = { .top = -1 };
+    Stack ops = { .top = -1 };
 
-    for (int i = 0; expr[i] != '\0'; i++) {
+    for (i = 0; i < len; i++) {
         if (isspace(expr[i])) continue;
 
         if (isalpha(expr[i])) {
-            push(&values, vars[expr[i] - 'a']);
+            push(&values, createNode('\0', vars[expr[i] - 'a']));
         } else if (isdigit(expr[i])) {
             double val = 0;
-            while (i < (int)strlen(expr) && isdigit(expr[i])) {
+            while (i < len && isdigit(expr[i])) {
                 val = (val * 10) + (expr[i] - '0');
                 i++;
             }
             i--;
-            push(&values, val);
+            push(&values, createNode('\0', val));
         } else if (expr[i] == '(') {
-            push(&ops, expr[i]);
+            push(&ops, createNode(expr[i], 0));
         } else if (expr[i] == ')') {
-            while (!isEmpty(&ops) && ops.items[ops.top] != '(') {
-                double val2 = pop(&values);
-                double val1 = pop(&values);
-                char op = pop(&ops);
-                push(&values, operate(val1, val2, op));
+            while (!isEmpty(&ops) && ops.items[ops.top]->op != '(') {
+                ExprNode* opNode = pop(&ops);
+                opNode->right = pop(&values);
+                opNode->left = pop(&values);
+                push(&values, opNode);
             }
             pop(&ops); // Eliminar el '('
         } else {
-            while (!isEmpty(&ops) && precedence(ops.items[ops.top]) >= precedence(expr[i])) {
-                double val2 = pop(&values);
-                double val1 = pop(&values);
-                char op = pop(&ops);
-                push(&values, operate(val1, val2, op));
+            while (!isEmpty(&ops) && precedence(ops.items[ops.top]->op) >= precedence(expr[i])) {
+                ExprNode* opNode = pop(&ops);
+                opNode->right = pop(&values);
+                opNode->left = pop(&values);
+                push(&values, opNode);
             }
-            push(&ops, expr[i]);
+            push(&ops, createNode(expr[i], 0));
         }
     }
 
     while (!isEmpty(&ops)) {
-        double val2 = pop(&values);
-        double val1 = pop(&values);
-        char op = pop(&ops);
-        push(&values, operate(val1, val2, op));
+        ExprNode* opNode = pop(&ops);
+        opNode->right = pop(&values);
+        opNode->left = pop(&values);
+        push(&values, opNode);
     }
 
     return pop(&values);
@@ -168,8 +191,10 @@ int main() {
                         printf("Entrada no válida. Por favor, introduce una variable y un valor válido.\n");
                     }
                 }
-                double result = evaluateExpression(expr, vars);
+                ExprNode* root = buildExpressionTree(expr, vars);
+                double result = evaluateExpressionTree(root);
                 printf("El resultado de la expresión es: %f\n", result);
+                freeExpressionTree(root);
                 break;
             case 2:
                 printf("Terminando programa.\n");
@@ -179,5 +204,5 @@ int main() {
         }
     }
 
-    //return 0;
+    return 0;
 }
