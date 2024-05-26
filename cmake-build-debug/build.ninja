@@ -67,6 +67,30 @@ build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Tree.c.obj: C_CO
   OBJECT_DIR = CMakeFiles\siu.dir
   OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_7
 
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/libros.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 6/libros.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6\libros.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6
+
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/main.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 6/main.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6\main.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6
+
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/stack.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 6/stack.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6\stack.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6
+
+build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/tree.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/EstructuraDeDatos/Practica$ 6/tree.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6\tree.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\siu.dir
+  OBJECT_FILE_DIR = CMakeFiles\siu.dir\EstructuraDeDatos\Practica_6
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target siu
@@ -75,7 +99,7 @@ build CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Tree.c.obj: C_CO
 #############################################
 # Link the executable siu.exe
 
-build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-1.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Stack.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Tree.c.obj
+build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-1.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Stack.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Tree.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/libros.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/main.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/stack.c.obj CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/tree.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\siu.dir
