@@ -19,7 +19,7 @@ Pila* init_caja() {
     Pila* caja = pila_nueva(LONGITUD_LIBROS);
     caja->deberia_liberar_direccion_datos_nodo = false;
 
-    for (int i = 0; i < LONGITUD_LIBROS; i++) {
+    for (size_t i = 0; i < LONGITUD_LIBROS; i++) {
         pila_push(caja, &LIBROS[i]);
     }
 
@@ -46,7 +46,7 @@ Pila** pilas_coinciden_una_o_crear(Pila** pilas, size_t* longitud_pilas, Libro* 
 
     bool es_coincidencia_genero = strcmp(estrategia, "genero") == 0;
 
-    for (int i = 0; i < *longitud_pilas; i++) {
+    for (size_t i = 0; i < *longitud_pilas; i++) {
         Libro* libro_tope = como_libro(pilas[i]->tope->datos);
 
         if (!libro_tope) {
@@ -110,12 +110,12 @@ Pila** menu_pila_por(Pila* caja, size_t* longitud_pilas_dir, char* estrategia) {
 
 void mostrar_opciones_genero(Pila** pilas, size_t longitud_pilas) {
     char* generos[longitud_pilas];
-    for (int i = 0; i < longitud_pilas; i++) {
+    for (size_t i = 0; i < longitud_pilas; i++) {
         generos[i] = como_libro(pilas[i]->tope->datos)->genre;
     }
 
-    for (int i = 0; i < longitud_pilas - 1; i++) {
-        for (int j = i + 1; j < longitud_pilas; j++) {
+    for (size_t i = 0; i < longitud_pilas - 1; i++) {
+        for (size_t j = i + 1; j < longitud_pilas; j++) {
             if (strcmp(generos[i], generos[j]) > 0) {
                 char* temp = generos[i];
                 generos[i] = generos[j];
@@ -124,19 +124,19 @@ void mostrar_opciones_genero(Pila** pilas, size_t longitud_pilas) {
         }
     }
 
-    for (int i = 0; i < longitud_pilas; i++) {
-        printf("[%d]: %s\n", i, generos[i]);
+    for (size_t i = 0; i < longitud_pilas; i++) {
+        printf("[%zu]: %s\n", i, generos[i]);
     }
 }
 
 void mostrar_opciones_ano(Pila** pilas, size_t longitud_pilas) {
     unsigned int anos[longitud_pilas];
-    for (int i = 0; i < longitud_pilas; i++) {
+    for (size_t i = 0; i < longitud_pilas; i++) {
         anos[i] = como_libro(pilas[i]->tope->datos)->year;
     }
 
-    for (int i = 0; i < longitud_pilas - 1; i++) {
-        for (int j = i + 1; j < longitud_pilas; j++) {
+    for (size_t i = 0; i < longitud_pilas - 1; i++) {
+        for (size_t j = i + 1; j < longitud_pilas; j++) {
             if (anos[i] > anos[j]) {
                 unsigned int temp = anos[i];
                 anos[i] = anos[j];
@@ -145,8 +145,8 @@ void mostrar_opciones_ano(Pila** pilas, size_t longitud_pilas) {
         }
     }
 
-    for (int i = 0; i < longitud_pilas; i++) {
-        printf("[%d]: %u\n", i, anos[i]);
+    for (size_t i = 0; i < longitud_pilas; i++) {
+        printf("[%zu]: %u\n", i, anos[i]);
     }
 }
 
@@ -167,7 +167,10 @@ int main() {
         printf("[3]: Salir\n\n");
 
         printf("Selección: ");
-        scanf("%d", &opcion_seleccionada);
+        if (scanf("%u", &opcion_seleccionada) != 1) {
+            printf("Entrada no válida.\n");
+            continue;
+        }
 
         if (opcion_seleccionada == 3) {
             break;
@@ -179,23 +182,38 @@ int main() {
                 pila_imprimir_vertical(caja, imprimir_libro);
                 printf("\nPresione Enter para continuar: ");
                 getchar();
-                deberia_continuar = 1;
+                getchar();
+                deberia_continuar = true;
                 break;
             case 1:
                 pilas = menu_pila_por(caja, &longitud_pilas, "genero");
                 printf("\n[1] Pila por género\n\n");
                 mostrar_opciones_genero(pilas, longitud_pilas);
                 printf("Seleccione una opción: ");
-                scanf("%d", &opcion_seleccionada);
-                pila_imprimir_vertical(pilas[opcion_seleccionada], imprimir_libro);
+                if (scanf("%u", &opcion_seleccionada) != 1) {
+                    printf("Entrada no válida.\n");
+                    continue;
+                }
+                if (opcion_seleccionada < longitud_pilas) {
+                    pila_imprimir_vertical(pilas[opcion_seleccionada], imprimir_libro);
+                } else {
+                    printf("Opción no válida.\n");
+                }
                 break;
             case 2:
                 pilas = menu_pila_por(caja, &longitud_pilas, "año");
                 printf("\n[2] Pila por año\n\n");
                 mostrar_opciones_ano(pilas, longitud_pilas);
                 printf("Seleccione una opción: ");
-                scanf("%d", &opcion_seleccionada);
-                pila_imprimir_vertical(pilas[opcion_seleccionada], imprimir_libro);
+                if (scanf("%u", &opcion_seleccionada) != 1) {
+                    printf("Entrada no válida.\n");
+                    continue;
+                }
+                if (opcion_seleccionada < longitud_pilas) {
+                    pila_imprimir_vertical(pilas[opcion_seleccionada], imprimir_libro);
+                } else {
+                    printf("Opción no válida.\n");
+                }
                 break;
             default:
                 break;
@@ -205,7 +223,7 @@ int main() {
             continue;
         }
 
-        for (int i = 0; i < longitud_pilas; i++) {
+        for (size_t i = 0; i < longitud_pilas; i++) {
             while (pilas[i]->tope) {
                 pila_push(caja, pilas[i]->tope->datos);
                 pila_pop(pilas[i]);
@@ -218,7 +236,7 @@ int main() {
     }
 
     pila_liberar(caja);
-    printf("[¡El programa ha finalizado!");
+    printf("Bye Bye...\n");
 
     return 0;
 }
