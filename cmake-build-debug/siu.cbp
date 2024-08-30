@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug"/>
+				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="siu">
-				<Option output="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/siu" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug"/>
+				<Option output="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/siu" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -31,15 +31,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 siu"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 siu"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="siu/fast">
-				<Option output="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/siu" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug"/>
+				<Option output="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/siu" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,37 +51,37 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 siu/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 siu/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug"/>
+				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug"/>
+				<Option working_dir="/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures/EstructuraDeDatos/Practica9.c">
+		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica1.c">
 			<Option target="siu"/>
 		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures/CMakeLists.txt">
+		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

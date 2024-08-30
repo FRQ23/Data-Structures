@@ -1,104 +1,77 @@
-//
-// Created by Fertronic on 8/26/2024.
-//
-
-/*
-
- • Elabora los algoritmos que se piden a continuación y luego analiza su
-complejidad.
-    • Escribe una función que reciba como parámetro 2 arreglos, y que imprima
-    sólo aquellos valores que se encuentren en ambos arreglos.
-    • Escribe una función que reciba como parámetro 2 arreglos, y que imprima
-    sólo aquellos elementos que están en el primer arreglo, pero que no están en
-    el segundo arreglo.
-    • Escribe una función que reciba como parámetro 2 arreglos, y que imprima
-    todos los elementos que no estén en el primer arreglo.
-*/
-
 #include <stdio.h>
-//#include <stdlib.h>
 
-// Escribe una función que reciba como parámetro 2 arreglos, y que imprima
-//    sólo aquellos valores que se encuentren en ambos arreglos.
-void coinciden(int arreglo1[], int arreglo2[]){
-    //Se hace un ciclo para "recorrer" el arreglo 1.
-    for (int i = 0; i < 10; i++){
-        //Se hace un ciclo para "recorrer" el arreglo 2.
-        for (int j = 0; j < 10; j++){
-            //Si el valor del arreglo 1 es igual al valor del arreglo 2, se imprime el valor
+// Función que imprime los valores que se encuentran en ambos arreglos
+void coinciden(int arreglo1[], int tam1, int arreglo2[], int tam2){
+    for (int i = 0; i < tam1; i++){
+        for (int j = 0; j < tam2; j++){
             if (arreglo1[i] == arreglo2[j]){
                 printf("%d\n", arreglo1[i]);
+                break;  // Para evitar imprimir valores duplicados
             }
         }
     }
 }
 
-// Escribe una función que reciba como parámetro 2 arreglos, y que imprima
-//    sólo aquellos elementos que están en el primer arreglo, pero que no están en
-//    el segundo arreglo.
-void coinciden2(int arreglo1[], int arreglo2[]){
-    //Se hace un ciclo para "recorrer" el arreglo 1.
-    for (int i = 0; i < 10; i++){
-        //Se hace un ciclo para "recorrer" el arreglo 2.
-        for (int j = 0; j < 10; j++){
-            //Si el valor del arreglo 1 es igual al valor del arreglo 2, se imprime el valor
+// Función que imprime los valores que están en el primer arreglo, pero no en el segundo
+void coinciden2(int arreglo1[], int tam1, int arreglo2[], int tam2){
+    for (int i = 0; i < tam1; i++){
+        int encontrado = 0;
+        for (int j = 0; j < tam2; j++){
             if (arreglo1[i] == arreglo2[j]){
+                encontrado = 1;
                 break;
             }
-            //Si el valor del arreglo 1 no es igual al valor del arreglo 2, se imprime el valor
-            if (j == 9){
-                printf("%d\n", arreglo1[i]);
-            }
+        }
+        if (!encontrado){
+            printf("%d\n", arreglo1[i]);
         }
     }
 }
 
-//Escribe una función que reciba como parámetro 2 arreglos, y que imprima
-//    todos los elementos que no estén en el primer arreglo.
-
-void coinciden3(int arreglo1[], int arreglo2[]){
-    //Se hace un ciclo para "recorrer" el arreglo 2.
-    for (int i = 0; i < 10; i++){
-        //Se hace un ciclo para "recorrer" el arreglo 1.
-        for (int j = 0; j < 10; j++){
-            //Si el valor del arreglo 2 es igual al valor del arreglo 1, se imprime el valor
+// Función que imprime los valores que están en el segundo arreglo pero no en el primero
+void coinciden3(int arreglo1[], int tam1, int arreglo2[], int tam2){
+    for (int i = 0; i < tam2; i++){
+        int encontrado = 0;
+        for (int j = 0; j < tam1; j++){
             if (arreglo2[i] == arreglo1[j]){
+                encontrado = 1;
                 break;
             }
-            //Si el valor del arreglo 2 no es igual al valor del arreglo 1, se imprime el valor
-            if (j == 9){
-                printf("%d\n", arreglo2[i]);
-            }
+        }
+        if (!encontrado){
+            printf("%d\n", arreglo2[i]);
         }
     }
 }
 
-//Bloque main, se definen los arreglos y se piden los valores de estos
+// Función principal
 int main (){
-    //definición de variables
-    int arreglo1[10];
-    int arreglo2[10];
+    int tam1 = 6;  // Tamaño del primer arreglo
+    int tam2 = 5;  // Tamaño del segundo arreglo
+    int arreglo1[tam1];
+    int arreglo2[tam2];
 
-    //Se piden los valores de los arreglos
-
+    // Leer los valores del primer arreglo
     printf("Ingresa los valores del primer arreglo\n");
-    for (int i = 0; i < 10; i++){
-        scanf("%d \n", &arreglo1[i]);
+    for (int i = 0; i < tam1; i++){
+        scanf("%d", &arreglo1[i]);
     }
 
+    // Leer los valores del segundo arreglo
     printf("Ingresa los valores del segundo arreglo\n");
-    for (int i = 0; i < 10; i++){
-        scanf("%d \n", &arreglo2[i]);
+    for (int i = 0; i < tam2; i++){
+        scanf("%d", &arreglo2[i]);
     }
 
-    //Se imprime el mensaje y se llama a la función coinciden dando como parametro los arreglos
+    // Llamadas a las funciones
     printf("Los valores que coinciden son (primer ejercicio):\n");
-    coinciden(arreglo1, arreglo2);
+    coinciden(arreglo1, tam1, arreglo2, tam2);
 
-    printf("Los valores que coinciden son (segundo ejercicio):\n");
-    coinciden2(arreglo1, arreglo2);
+    printf("Los valores que están en el primer arreglo pero no en el segundo son (segundo ejercicio):\n");
+    coinciden2(arreglo1, tam1, arreglo2, tam2);
 
-    printf("Los valores que coinciden son (tercer ejercicio):\n");
-    coinciden3(arreglo1, arreglo2);
+    printf("Los valores que están en el segundo arreglo pero no en el primero son (tercer ejercicio):\n");
+    coinciden3(arreglo1, tam1, arreglo2, tam2);
 
+    return 0;
 }

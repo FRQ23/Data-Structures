@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/x64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/fernandorosales/CLionProjects/Data-Structures
+CMAKE_SOURCE_DIR = /Users/fernandorosales/CLionProjects/Data-Structures-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/CMakeFiles /Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,29 +129,29 @@ siu/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/build
 .PHONY : siu/fast
 
-EstructuraDeDatos/Practica9.o: EstructuraDeDatos/Practica9.c.o
-.PHONY : EstructuraDeDatos/Practica9.o
+AnalisisDeAlgoritmos/Practica1.o: AnalisisDeAlgoritmos/Practica1.c.o
+.PHONY : AnalisisDeAlgoritmos/Practica1.o
 
 # target to build an object file
-EstructuraDeDatos/Practica9.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.o
-.PHONY : EstructuraDeDatos/Practica9.c.o
+AnalisisDeAlgoritmos/Practica1.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.o
+.PHONY : AnalisisDeAlgoritmos/Practica1.c.o
 
-EstructuraDeDatos/Practica9.i: EstructuraDeDatos/Practica9.c.i
-.PHONY : EstructuraDeDatos/Practica9.i
+AnalisisDeAlgoritmos/Practica1.i: AnalisisDeAlgoritmos/Practica1.c.i
+.PHONY : AnalisisDeAlgoritmos/Practica1.i
 
 # target to preprocess a source file
-EstructuraDeDatos/Practica9.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.i
-.PHONY : EstructuraDeDatos/Practica9.c.i
+AnalisisDeAlgoritmos/Practica1.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.i
+.PHONY : AnalisisDeAlgoritmos/Practica1.c.i
 
-EstructuraDeDatos/Practica9.s: EstructuraDeDatos/Practica9.c.s
-.PHONY : EstructuraDeDatos/Practica9.s
+AnalisisDeAlgoritmos/Practica1.s: AnalisisDeAlgoritmos/Practica1.c.s
+.PHONY : AnalisisDeAlgoritmos/Practica1.s
 
 # target to generate assembly for a file
-EstructuraDeDatos/Practica9.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/EstructuraDeDatos/Practica9.c.s
-.PHONY : EstructuraDeDatos/Practica9.c.s
+AnalisisDeAlgoritmos/Practica1.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.s
+.PHONY : AnalisisDeAlgoritmos/Practica1.c.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... siu"
-	@echo "... EstructuraDeDatos/Practica9.o"
-	@echo "... EstructuraDeDatos/Practica9.i"
-	@echo "... EstructuraDeDatos/Practica9.s"
+	@echo "... AnalisisDeAlgoritmos/Practica1.o"
+	@echo "... AnalisisDeAlgoritmos/Practica1.i"
+	@echo "... AnalisisDeAlgoritmos/Practica1.s"
 .PHONY : help
 
 
