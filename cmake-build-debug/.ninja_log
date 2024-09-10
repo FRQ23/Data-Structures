@@ -1,12 +1,15 @@
 # ninja log v5
-0	63	7471750932571051	build.ninja	d3e45b0d19b5cd5f
-2	133	7459965551456237	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/main.c.obj	ec453dee051fa0dd
-129	266	7463882000551299	siu.exe	a9b370071c4aa422
-2	90	7383861281802018	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-1.c.obj	cbead67fa1e42bb8
-16	88	7383861281776504	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/libros.c.obj	343f5d8dd75f55c7
-5	90	7383861281802018	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Stack.c.obj	f88c5ce597682ca0
-7	90	7383861281802018	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_7/Practica7-Tree.c.obj	a514679715dd2a1
-9	89	7383861281796981	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/stack.c.obj	af6eeb587abf3629
-11	89	7383861281796981	CMakeFiles/siu.dir/EstructuraDeDatos/Practica_6/tree.c.obj	d8e66d9c010e7c47
-2	46	7459969186775834	CMakeFiles/siu.dir/EstructuraDeDatos/UnVideoMaMiGente.c.obj	c7a4ba494f4c9c37
-0	129	7463881999191821	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.obj	40d5248d9f67cf16
+1	56	7476418309228473	build.ninja	d3e45b0d19b5cd5f
+1	52	7471752541649332	siu.exe	814565cc73e1926a
+4	60	7471752344220830	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica2.c.obj	f980690e1d635027
+1	61	7476418309228473	build.ninja	d3e45b0d19b5cd5f
+1	76	7476418310125943	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj	1c1240fbf64d3ff7
+77	158	7476418310922103	siu.exe	20063b93dc6df3d1
+1	73	7476423382450360	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj	1c1240fbf64d3ff7
+74	198	7476423383673544	siu.exe	20063b93dc6df3d1
+1	65	7476426067629906	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj	1c1240fbf64d3ff7
+66	130	7476426068247205	siu.exe	20063b93dc6df3d1
+1	64	7476427995338105	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj	1c1240fbf64d3ff7
+64	120	7476427995877492	siu.exe	20063b93dc6df3d1
+2	70	7476436795792247	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj	1c1240fbf64d3ff7
+71	127	7476436796333223	siu.exe	20063b93dc6df3d1
