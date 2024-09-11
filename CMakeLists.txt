@@ -4,4 +4,4 @@ project(siu C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(siu
-        AnalisisDeAlgoritmos/Practica3.c)
+        AnalisisDeAlgoritmos/Practica3/Practica3.c)
