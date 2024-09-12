@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+#include <stdbool.h>
 
 // Definición de la estructura de Infracción
 typedef struct {
     char placas[10];
     char marca[20];
     char modelo[20];
-    int año;
+    int anio;
     float multa;
     char motivo[100];
     char fecha[11];  // dd/mm/yyyy
@@ -114,8 +114,8 @@ void agregarInfraccion(Infraccion **infracciones, int *n, int *capacidad) {
     scanf("%s", (*infracciones)[*n].marca);
     printf("Modelo: ");
     scanf("%s", (*infracciones)[*n].modelo);
-    printf("Año: ");
-    scanf("%d", &(*infracciones)[*n].año);
+    printf("anio: ");
+    scanf("%d", &(*infracciones)[*n].anio);
     printf("Multa: ");
     scanf("%f", &(*infracciones)[*n].multa);
     printf("Motivo: ");
@@ -145,20 +145,27 @@ void saldarMulta(Infraccion infracciones[], int *n) {
 }
 
 // Función auxiliar para obtener el dígito en una posición dada de un número de placa
-int getDigit(char *placa, int pos) {
+int getdigito(char *placa, int pos) {
     return placa[pos] - '0'; // Convertir carácter a dígito
 }
 
 // Función para obtener el valor del carácter de la placa, ya sea un número o una letra
-int getPlacaValue(char c) {
-    if (isdigit(c)) {
+int obtenerPlaca(char c, bool esPrimeraPosicion) {
+    if (c >= '0' && c <= '9') {
+        if (esPrimeraPosicion && c == '3') {
+            return 3;  // Tratar '3' en la primera posición como '003'
+        }
         return c - '0';  // Convertir caracteres numéricos a su valor correspondiente
-    } else if (isalpha(c)) {
-        return toupper(c) - 'A' + 10;  // Convertir letras a valores desde 10 en adelante
+    } else if (c >= 'A' && c <= 'Z') {
+        return c - 'A' + 10;  // Convertir letras mayúsculas a valores desde 10 en adelante
+    } else if (c >= 'a' && c <= 'z') {
+        return c - 'a' + 10;  // Convertir letras minúsculas a valores desde 10 en adelante
     } else {
-        return 0;  // Asignar un valor predeterminado para cualquier otro carácter no esperado
+        return -1;  // Retornar -1 si el carácter no es un número o una letra
     }
 }
+
+
 
 // Función para encontrar el número de caracteres en la placa más larga
 int maxLen(Infraccion infracciones[], int n) {
@@ -173,18 +180,18 @@ int maxLen(Infraccion infracciones[], int n) {
 
 // Radix Sort modificado para manejar placas alfanuméricas y mostrar el proceso paso a paso
 void radixSort(Infraccion infracciones[], int n) {
-    int max_length = maxLen(infracciones, n);  // Máxima longitud de las placas
+    int max_longitud = maxLen(infracciones, n);  // Máxima longitud de las placas
     Infraccion output[n];
     int count[36];  // Para manejar dígitos (0-9) y letras (A-Z)
 
-    for (int pos = max_length - 1; pos >= 0; pos--) {
+    for (int pos = max_longitud - 1; pos >= 0; pos--) {
         memset(count, 0, sizeof(count));  // Inicializar el contador
 
         // Contar las ocurrencias de cada carácter (números y letras)
         for (int i = 0; i < n; i++) {
-            int length = strlen(infracciones[i].placas);
-            int digit = (pos < length) ? getPlacaValue(infracciones[i].placas[pos]) : 0;
-            count[digit]++;
+            int longitud = strlen(infracciones[i].placas);
+            int digito = (pos < longitud) ? obtenerPlaca(infracciones[i].placas[pos]) : 0;
+            count[digito]++;
         }
 
         // Cambiar count[i] para contener las posiciones reales de los caracteres
@@ -194,10 +201,10 @@ void radixSort(Infraccion infracciones[], int n) {
 
         // Construir el arreglo ordenado
         for (int i = n - 1; i >= 0; i--) {
-            int length = strlen(infracciones[i].placas);
-            int digit = (pos < length) ? getPlacaValue(infracciones[i].placas[pos]) : 0;
-            output[count[digit] - 1] = infracciones[i];
-            count[digit]--;
+            int longitud = strlen(infracciones[i].placas);
+            int digito = (pos < longitud) ? obtenerPlaca(infracciones[i].placas[pos]) : 0;
+            output[count[digito] - 1] = infracciones[i];
+            count[digito]--;
         }
 
         // Copiar el arreglo ordenado a las infracciones originales
@@ -256,18 +263,18 @@ void quickSort(Infraccion infracciones[], int low, int high) {
 
 int compararFechas(char fecha1[], char fecha2[]) {
     // Formato esperado: DD/MM/AAAA
-    int dia1, mes1, año1;
-    int dia2, mes2, año2;
+    int dia1, mes1, anio1;
+    int dia2, mes2, anio2;
 
     // Parsear las fechas
-    sscanf(fecha1, "%d/%d/%d", &dia1, &mes1, &año1);
-    sscanf(fecha2, "%d/%d/%d", &dia2, &mes2, &año2);
+    sscanf(fecha1, "%d/%d/%d", &dia1, &mes1, &anio1);
+    sscanf(fecha2, "%d/%d/%d", &dia2, &mes2, &anio2);
 
-    // Comparar los años
-    if (año1 < año2) return -1;
-    if (año1 > año2) return 1;
+    // Comparar los anios
+    if (anio1 < anio2) return -1;
+    if (anio1 > anio2) return 1;
 
-    // Si los años son iguales, comparar los meses
+    // Si los anios son iguales, comparar los meses
     if (mes1 < mes2) return -1;
     if (mes1 > mes2) return 1;
 
@@ -298,8 +305,8 @@ int partition(Infraccion infracciones[], int low, int high) {
 void visualizarPasoAPaso(Infraccion infracciones[], int n) {
     printf("\n--- Visualización paso a paso ---\n");
     for (int i = 0; i < n; i++) {
-        printf("Placas: %s | Marca: %s | Modelo: %s | Año: %d | Multa: %.2f | Motivo: %s | Fecha: %s\n",
-               infracciones[i].placas, infracciones[i].marca, infracciones[i].modelo, infracciones[i].año,
+        printf("Placas: %s | Marca: %s | Modelo: %s | anio: %d | Multa: %.2f | Motivo: %s | Fecha: %s\n",
+               infracciones[i].placas, infracciones[i].marca, infracciones[i].modelo, infracciones[i].anio,
                infracciones[i].multa, infracciones[i].motivo, infracciones[i].fecha);
     }
     printf("-----------------------------\n");
@@ -309,8 +316,8 @@ void visualizarPasoAPaso(Infraccion infracciones[], int n) {
 void imprimirInfracciones(Infraccion infracciones[], int n) {
     printf("\n--- Infracciones ---\n");
     for (int i = 0; i < n; i++) {
-        printf("Placas: %s | Marca: %s | Modelo: %s | Año: %d | Multa: %.2f | Motivo: %s | Fecha: %s\n",
-               infracciones[i].placas, infracciones[i].marca, infracciones[i].modelo, infracciones[i].año,
+        printf("Placas: %s | Marca: %s | Modelo: %s | anio: %d | Multa: %.2f | Motivo: %s | Fecha: %s\n",
+               infracciones[i].placas, infracciones[i].marca, infracciones[i].modelo, infracciones[i].anio,
                infracciones[i].multa, infracciones[i].motivo, infracciones[i].fecha);
     }
 }

@@ -20,7 +20,7 @@ void burbuja(Gasto *gastos, int n); // Sort tipo burbuja
 void capturarGasto(Gasto **gastos, int *n); // Función para capturar un gasto
 void mostrarGastos(Gasto *gastos, int n, const char *categoria, void (*ordenar)(Gasto*, int), int ascendente); // Función para mostrar gastos
 //filtrados por categoría
-int main() {
+int main(void) {
 
     Gasto *gastos = NULL; // Puntero dinámico para los gastos
 

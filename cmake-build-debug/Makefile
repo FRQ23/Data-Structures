@@ -129,29 +129,173 @@ siu/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/build
 .PHONY : siu/fast
 
-AnalisisDeAlgoritmos/Practica1.o: AnalisisDeAlgoritmos/Practica1.c.o
-.PHONY : AnalisisDeAlgoritmos/Practica1.o
+AnalisisDeAlgoritmos/Practica3/Practica3-1.o: AnalisisDeAlgoritmos/Practica3/Practica3-1.c.o
+.PHONY : AnalisisDeAlgoritmos/Practica3/Practica3-1.o
 
 # target to build an object file
-AnalisisDeAlgoritmos/Practica1.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.o
-.PHONY : AnalisisDeAlgoritmos/Practica1.c.o
+AnalisisDeAlgoritmos/Practica3/Practica3-1.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3/Practica3-1.c.o
+.PHONY : AnalisisDeAlgoritmos/Practica3/Practica3-1.c.o
 
-AnalisisDeAlgoritmos/Practica1.i: AnalisisDeAlgoritmos/Practica1.c.i
-.PHONY : AnalisisDeAlgoritmos/Practica1.i
+AnalisisDeAlgoritmos/Practica3/Practica3-1.i: AnalisisDeAlgoritmos/Practica3/Practica3-1.c.i
+.PHONY : AnalisisDeAlgoritmos/Practica3/Practica3-1.i
 
 # target to preprocess a source file
-AnalisisDeAlgoritmos/Practica1.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.i
-.PHONY : AnalisisDeAlgoritmos/Practica1.c.i
+AnalisisDeAlgoritmos/Practica3/Practica3-1.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3/Practica3-1.c.i
+.PHONY : AnalisisDeAlgoritmos/Practica3/Practica3-1.c.i
 
-AnalisisDeAlgoritmos/Practica1.s: AnalisisDeAlgoritmos/Practica1.c.s
-.PHONY : AnalisisDeAlgoritmos/Practica1.s
+AnalisisDeAlgoritmos/Practica3/Practica3-1.s: AnalisisDeAlgoritmos/Practica3/Practica3-1.c.s
+.PHONY : AnalisisDeAlgoritmos/Practica3/Practica3-1.s
 
 # target to generate assembly for a file
-AnalisisDeAlgoritmos/Practica1.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica1.c.s
-.PHONY : AnalisisDeAlgoritmos/Practica1.c.s
+AnalisisDeAlgoritmos/Practica3/Practica3-1.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3/Practica3-1.c.s
+.PHONY : AnalisisDeAlgoritmos/Practica3/Practica3-1.c.s
+
+StopBeingAverage/arraysStrings.o: StopBeingAverage/arraysStrings.c.o
+.PHONY : StopBeingAverage/arraysStrings.o
+
+# target to build an object file
+StopBeingAverage/arraysStrings.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/arraysStrings.c.o
+.PHONY : StopBeingAverage/arraysStrings.c.o
+
+StopBeingAverage/arraysStrings.i: StopBeingAverage/arraysStrings.c.i
+.PHONY : StopBeingAverage/arraysStrings.i
+
+# target to preprocess a source file
+StopBeingAverage/arraysStrings.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/arraysStrings.c.i
+.PHONY : StopBeingAverage/arraysStrings.c.i
+
+StopBeingAverage/arraysStrings.s: StopBeingAverage/arraysStrings.c.s
+.PHONY : StopBeingAverage/arraysStrings.s
+
+# target to generate assembly for a file
+StopBeingAverage/arraysStrings.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/arraysStrings.c.s
+.PHONY : StopBeingAverage/arraysStrings.c.s
+
+StopBeingAverage/calculator.o: StopBeingAverage/calculator.c.o
+.PHONY : StopBeingAverage/calculator.o
+
+# target to build an object file
+StopBeingAverage/calculator.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/calculator.c.o
+.PHONY : StopBeingAverage/calculator.c.o
+
+StopBeingAverage/calculator.i: StopBeingAverage/calculator.c.i
+.PHONY : StopBeingAverage/calculator.i
+
+# target to preprocess a source file
+StopBeingAverage/calculator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/calculator.c.i
+.PHONY : StopBeingAverage/calculator.c.i
+
+StopBeingAverage/calculator.s: StopBeingAverage/calculator.c.s
+.PHONY : StopBeingAverage/calculator.s
+
+# target to generate assembly for a file
+StopBeingAverage/calculator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/calculator.c.s
+.PHONY : StopBeingAverage/calculator.c.s
+
+StopBeingAverage/helloUser.o: StopBeingAverage/helloUser.c.o
+.PHONY : StopBeingAverage/helloUser.o
+
+# target to build an object file
+StopBeingAverage/helloUser.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/helloUser.c.o
+.PHONY : StopBeingAverage/helloUser.c.o
+
+StopBeingAverage/helloUser.i: StopBeingAverage/helloUser.c.i
+.PHONY : StopBeingAverage/helloUser.i
+
+# target to preprocess a source file
+StopBeingAverage/helloUser.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/helloUser.c.i
+.PHONY : StopBeingAverage/helloUser.c.i
+
+StopBeingAverage/helloUser.s: StopBeingAverage/helloUser.c.s
+.PHONY : StopBeingAverage/helloUser.s
+
+# target to generate assembly for a file
+StopBeingAverage/helloUser.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/helloUser.c.s
+.PHONY : StopBeingAverage/helloUser.c.s
+
+StopBeingAverage/hello_world.o: StopBeingAverage/hello_world.c.o
+.PHONY : StopBeingAverage/hello_world.o
+
+# target to build an object file
+StopBeingAverage/hello_world.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/hello_world.c.o
+.PHONY : StopBeingAverage/hello_world.c.o
+
+StopBeingAverage/hello_world.i: StopBeingAverage/hello_world.c.i
+.PHONY : StopBeingAverage/hello_world.i
+
+# target to preprocess a source file
+StopBeingAverage/hello_world.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/hello_world.c.i
+.PHONY : StopBeingAverage/hello_world.c.i
+
+StopBeingAverage/hello_world.s: StopBeingAverage/hello_world.c.s
+.PHONY : StopBeingAverage/hello_world.s
+
+# target to generate assembly for a file
+StopBeingAverage/hello_world.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/hello_world.c.s
+.PHONY : StopBeingAverage/hello_world.c.s
+
+StopBeingAverage/parImpar.o: StopBeingAverage/parImpar.c.o
+.PHONY : StopBeingAverage/parImpar.o
+
+# target to build an object file
+StopBeingAverage/parImpar.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/parImpar.c.o
+.PHONY : StopBeingAverage/parImpar.c.o
+
+StopBeingAverage/parImpar.i: StopBeingAverage/parImpar.c.i
+.PHONY : StopBeingAverage/parImpar.i
+
+# target to preprocess a source file
+StopBeingAverage/parImpar.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/parImpar.c.i
+.PHONY : StopBeingAverage/parImpar.c.i
+
+StopBeingAverage/parImpar.s: StopBeingAverage/parImpar.c.s
+.PHONY : StopBeingAverage/parImpar.s
+
+# target to generate assembly for a file
+StopBeingAverage/parImpar.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/parImpar.c.s
+.PHONY : StopBeingAverage/parImpar.c.s
+
+StopBeingAverage/pointers.o: StopBeingAverage/pointers.c.o
+.PHONY : StopBeingAverage/pointers.o
+
+# target to build an object file
+StopBeingAverage/pointers.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/pointers.c.o
+.PHONY : StopBeingAverage/pointers.c.o
+
+StopBeingAverage/pointers.i: StopBeingAverage/pointers.c.i
+.PHONY : StopBeingAverage/pointers.i
+
+# target to preprocess a source file
+StopBeingAverage/pointers.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/pointers.c.i
+.PHONY : StopBeingAverage/pointers.c.i
+
+StopBeingAverage/pointers.s: StopBeingAverage/pointers.c.s
+.PHONY : StopBeingAverage/pointers.s
+
+# target to generate assembly for a file
+StopBeingAverage/pointers.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/StopBeingAverage/pointers.c.s
+.PHONY : StopBeingAverage/pointers.c.s
 
 # Help Target
 help:
@@ -162,9 +306,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... siu"
-	@echo "... AnalisisDeAlgoritmos/Practica1.o"
-	@echo "... AnalisisDeAlgoritmos/Practica1.i"
-	@echo "... AnalisisDeAlgoritmos/Practica1.s"
+	@echo "... AnalisisDeAlgoritmos/Practica3/Practica3-1.o"
+	@echo "... AnalisisDeAlgoritmos/Practica3/Practica3-1.i"
+	@echo "... AnalisisDeAlgoritmos/Practica3/Practica3-1.s"
+	@echo "... StopBeingAverage/arraysStrings.o"
+	@echo "... StopBeingAverage/arraysStrings.i"
+	@echo "... StopBeingAverage/arraysStrings.s"
+	@echo "... StopBeingAverage/calculator.o"
+	@echo "... StopBeingAverage/calculator.i"
+	@echo "... StopBeingAverage/calculator.s"
+	@echo "... StopBeingAverage/helloUser.o"
+	@echo "... StopBeingAverage/helloUser.i"
+	@echo "... StopBeingAverage/helloUser.s"
+	@echo "... StopBeingAverage/hello_world.o"
+	@echo "... StopBeingAverage/hello_world.i"
+	@echo "... StopBeingAverage/hello_world.s"
+	@echo "... StopBeingAverage/parImpar.o"
+	@echo "... StopBeingAverage/parImpar.i"
+	@echo "... StopBeingAverage/parImpar.s"
+	@echo "... StopBeingAverage/pointers.o"
+	@echo "... StopBeingAverage/pointers.i"
+	@echo "... StopBeingAverage/pointers.s"
 .PHONY : help
 
 
