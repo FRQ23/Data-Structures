@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 // Definición de la estructura de Infracción
 typedef struct {
@@ -25,6 +24,22 @@ void quickSort(Infraccion infracciones[], int low, int high);
 int partition(Infraccion infracciones[], int low, int high);
 void imprimirInfracciones(Infraccion infracciones[], int n);
 void visualizarPasoAPaso(Infraccion infracciones[], int n);
+
+// Implementación de funciones propias para reemplazar ctype.h
+int esDigito(char c) {
+    return c >= '0' && c <= '9';
+}
+
+int esLetra(char c) {
+    return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+}
+
+char aMayuscula(char c) {
+    if (c >= 'a' && c <= 'z') {
+        return c - ('a' - 'A');
+    }
+    return c;
+}
 
 int main() {
     int opcion, n = 7;
@@ -128,10 +143,10 @@ int getDigit(char *placa, int pos) {
 
 // Función para obtener el valor del carácter de la placa, ya sea un número o una letra
 int getPlacaValue(char c) {
-    if (isdigit(c)) {
+    if (esDigito(c)) {
         return c - '0';  // Convertir caracteres numéricos a su valor correspondiente
-    } else if (isalpha(c)) {
-        return toupper(c) - 'A' + 10;  // Convertir letras a valores desde 10 en adelante
+    } else if (esLetra(c)) {
+        return aMayuscula(c) - 'A' + 10;  // Convertir letras a valores desde 10 en adelante
     } else {
         return 0;  // Asignar un valor predeterminado para cualquier otro carácter no esperado
     }

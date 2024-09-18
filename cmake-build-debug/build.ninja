@@ -49,8 +49,8 @@ cmake_ninja_workdir = C$:/Users/PC$ TENSE/CLionProjects/siu/cmake-build-debug/
 
 build cmake_object_order_depends_target_siu: phony || CMakeFiles/siu.dir
 
-build CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/AnalisisDeAlgoritmos/Practica3.c || cmake_object_order_depends_target_siu
-  DEP_FILE = CMakeFiles\siu.dir\AnalisisDeAlgoritmos\Practica3.c.obj.d
+build CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj: C_COMPILER__siu_unscanned_Debug C$:/Users/PC$ TENSE/CLionProjects/siu/AnalisisDeAlgoritmos/Practica4.c || cmake_object_order_depends_target_siu
+  DEP_FILE = CMakeFiles\siu.dir\AnalisisDeAlgoritmos\Practica4.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\siu.dir
   OBJECT_FILE_DIR = CMakeFiles\siu.dir\AnalisisDeAlgoritmos
@@ -63,7 +63,7 @@ build CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj: C_COMPILER__siu_u
 #############################################
 # Link the executable siu.exe
 
-build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj
+build siu.exe: C_EXECUTABLE_LINKER__siu_Debug CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\siu.dir

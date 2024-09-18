@@ -1,7 +1,10 @@
 # ninja log v5
-1	61	7477785782459524	build.ninja	d3e45b0d19b5cd5f
-1	56	7477720660681527	siu.exe	318eef16e9c3af92
-2	70	7476436795792247	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3.c.obj	1c1240fbf64d3ff7
-1	56	7477720376406348	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3-1.c.obj	f1f0df1f9a279b11
-0	63	7477785782459524	build.ninja	d3e45b0d19b5cd5f
-2	59	7477785783147251	siu.exe	20063b93dc6df3d1
+0	61	7483960437026385	build.ninja	d3e45b0d19b5cd5f
+1	60	7483959518667353	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3/Practica3.c.obj	b33458a9cae9ed3b
+60	111	7483959519158109	siu.exe	853b914c50686cc1
+0	56	7483960437026385	build.ninja	d3e45b0d19b5cd5f
+0	26	7483960437426864	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
+0	57	7483960832311670	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
+57	108	7483960832787825	siu.exe	80af24551171232a
+1	59	7483961705374999	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
+59	111	7483961705874610	siu.exe	80af24551171232a

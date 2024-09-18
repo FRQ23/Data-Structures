@@ -159,6 +159,8 @@ void mostrarGastos(Gasto *gastos, int n, const char *categoria, void (*ordenar)(
 
     }
 
+
+
 // Si hay gastos, los mostramos
 
     if (count > 0) {
