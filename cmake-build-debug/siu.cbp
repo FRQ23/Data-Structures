@@ -78,25 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica3/Practica3-1.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/StopBeingAverage/arraysStrings.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/StopBeingAverage/calculator.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/StopBeingAverage/helloUser.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/StopBeingAverage/hello_world.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/StopBeingAverage/parImpar.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/StopBeingAverage/pointers.c">
+		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-7.c">
 			<Option target="siu"/>
 		</Unit>
 		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/CMakeLists.txt">
