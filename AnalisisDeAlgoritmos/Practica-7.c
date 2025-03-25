@@ -185,7 +185,7 @@ void resolverDFS(int** matriz_costos, int N, int costo_maximo) {
 
 // Función principal
 int main() {
-    int N = 4; // Número de empleados y tareas
+    int N = 4; // Número de empleados y
     int costo_maximo = 999; // Costo máximo permitido
     int** matriz_costos = (int**)malloc(N * sizeof(int*));
     for (int i = 0; i < N; i++) {

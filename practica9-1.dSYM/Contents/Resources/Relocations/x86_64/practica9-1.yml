@@ -1,0 +1,21 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     practica9-1
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _merge, symObjAddr: 0x0, symBinAddr: 0x100002040, symSize: 0x4A0 }
+  - { offsetInCU: 0x65, offset: 0x65, size: 0x8, addend: 0x0, symName: _merge, symObjAddr: 0x0, symBinAddr: 0x100002040, symSize: 0x4A0 }
+  - { offsetInCU: 0x12A, offset: 0x12A, size: 0x8, addend: 0x0, symName: _mergeSort, symObjAddr: 0x4A0, symBinAddr: 0x1000024E0, symSize: 0x4A0 }
+  - { offsetInCU: 0x22B, offset: 0x22B, size: 0x8, addend: 0x0, symName: _intercambiar, symObjAddr: 0x940, symBinAddr: 0x100002980, symSize: 0x10 }
+  - { offsetInCU: 0x280, offset: 0x280, size: 0x8, addend: 0x0, symName: _particionar, symObjAddr: 0x950, symBinAddr: 0x100002990, symSize: 0xB0 }
+  - { offsetInCU: 0x368, offset: 0x368, size: 0x8, addend: 0x0, symName: _quickSort, symObjAddr: 0xA00, symBinAddr: 0x100002A40, symSize: 0x110 }
+  - { offsetInCU: 0x477, offset: 0x477, size: 0x8, addend: 0x0, symName: _heapify, symObjAddr: 0xB10, symBinAddr: 0x100002B50, symSize: 0x80 }
+  - { offsetInCU: 0x526, offset: 0x526, size: 0x8, addend: 0x0, symName: _heapSort, symObjAddr: 0xB90, symBinAddr: 0x100002BD0, symSize: 0x130 }
+  - { offsetInCU: 0x63E, offset: 0x63E, size: 0x8, addend: 0x0, symName: _quickHeap, symObjAddr: 0xCC0, symBinAddr: 0x100002D00, symSize: 0xF0 }
+  - { offsetInCU: 0x788, offset: 0x788, size: 0x8, addend: 0x0, symName: _generarArregloAleatorio, symObjAddr: 0xDB0, symBinAddr: 0x100002DF0, symSize: 0x60 }
+  - { offsetInCU: 0x7DD, offset: 0x7DD, size: 0x8, addend: 0x0, symName: _generarArregloOrdenado, symObjAddr: 0xE10, symBinAddr: 0x100002E50, symSize: 0x1A0 }
+  - { offsetInCU: 0x818, offset: 0x818, size: 0x8, addend: 0x0, symName: _generarArregloOrdenadoAlReves, symObjAddr: 0xFB0, symBinAddr: 0x100002FF0, symSize: 0x100 }
+  - { offsetInCU: 0x853, offset: 0x853, size: 0x8, addend: 0x0, symName: _imprimirArreglo, symObjAddr: 0x10B0, symBinAddr: 0x1000030F0, symSize: 0x50 }
+  - { offsetInCU: 0x890, offset: 0x890, size: 0x8, addend: 0x0, symName: _copiarArreglo, symObjAddr: 0x1100, symBinAddr: 0x100003140, symSize: 0x180 }
+  - { offsetInCU: 0x8D2, offset: 0x8D2, size: 0x8, addend: 0x0, symName: _mostrarMenu, symObjAddr: 0x1280, symBinAddr: 0x1000032C0, symSize: 0x60 }
+  - { offsetInCU: 0x9D4, offset: 0x9D4, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x12E0, symBinAddr: 0x100003320, symSize: 0x9F8 }
+...

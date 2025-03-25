@@ -129,29 +129,77 @@ siu/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/build
 .PHONY : siu/fast
 
-AnalisisDeAlgoritmos/Practica-7.o: AnalisisDeAlgoritmos/Practica-7.c.o
-.PHONY : AnalisisDeAlgoritmos/Practica-7.o
+AnalisisDeAlgoritmos/Practica-8.o: AnalisisDeAlgoritmos/Practica-8.c.o
+.PHONY : AnalisisDeAlgoritmos/Practica-8.o
 
 # target to build an object file
-AnalisisDeAlgoritmos/Practica-7.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-7.c.o
-.PHONY : AnalisisDeAlgoritmos/Practica-7.c.o
+AnalisisDeAlgoritmos/Practica-8.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o
+.PHONY : AnalisisDeAlgoritmos/Practica-8.c.o
 
-AnalisisDeAlgoritmos/Practica-7.i: AnalisisDeAlgoritmos/Practica-7.c.i
-.PHONY : AnalisisDeAlgoritmos/Practica-7.i
+AnalisisDeAlgoritmos/Practica-8.i: AnalisisDeAlgoritmos/Practica-8.c.i
+.PHONY : AnalisisDeAlgoritmos/Practica-8.i
 
 # target to preprocess a source file
-AnalisisDeAlgoritmos/Practica-7.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-7.c.i
-.PHONY : AnalisisDeAlgoritmos/Practica-7.c.i
+AnalisisDeAlgoritmos/Practica-8.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.i
+.PHONY : AnalisisDeAlgoritmos/Practica-8.c.i
 
-AnalisisDeAlgoritmos/Practica-7.s: AnalisisDeAlgoritmos/Practica-7.c.s
-.PHONY : AnalisisDeAlgoritmos/Practica-7.s
+AnalisisDeAlgoritmos/Practica-8.s: AnalisisDeAlgoritmos/Practica-8.c.s
+.PHONY : AnalisisDeAlgoritmos/Practica-8.s
 
 # target to generate assembly for a file
-AnalisisDeAlgoritmos/Practica-7.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-7.c.s
-.PHONY : AnalisisDeAlgoritmos/Practica-7.c.s
+AnalisisDeAlgoritmos/Practica-8.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.s
+.PHONY : AnalisisDeAlgoritmos/Practica-8.c.s
+
+Pracrica9-1.o: Pracrica9-1.c.o
+.PHONY : Pracrica9-1.o
+
+# target to build an object file
+Pracrica9-1.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/Pracrica9-1.c.o
+.PHONY : Pracrica9-1.c.o
+
+Pracrica9-1.i: Pracrica9-1.c.i
+.PHONY : Pracrica9-1.i
+
+# target to preprocess a source file
+Pracrica9-1.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/Pracrica9-1.c.i
+.PHONY : Pracrica9-1.c.i
+
+Pracrica9-1.s: Pracrica9-1.c.s
+.PHONY : Pracrica9-1.s
+
+# target to generate assembly for a file
+Pracrica9-1.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/Pracrica9-1.c.s
+.PHONY : Pracrica9-1.c.s
+
+Practica-9.o: Practica-9.c.o
+.PHONY : Practica-9.o
+
+# target to build an object file
+Practica-9.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/Practica-9.c.o
+.PHONY : Practica-9.c.o
+
+Practica-9.i: Practica-9.c.i
+.PHONY : Practica-9.i
+
+# target to preprocess a source file
+Practica-9.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/Practica-9.c.i
+.PHONY : Practica-9.c.i
+
+Practica-9.s: Practica-9.c.s
+.PHONY : Practica-9.s
+
+# target to generate assembly for a file
+Practica-9.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/Practica-9.c.s
+.PHONY : Practica-9.c.s
 
 # Help Target
 help:
@@ -162,9 +210,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... siu"
-	@echo "... AnalisisDeAlgoritmos/Practica-7.o"
-	@echo "... AnalisisDeAlgoritmos/Practica-7.i"
-	@echo "... AnalisisDeAlgoritmos/Practica-7.s"
+	@echo "... AnalisisDeAlgoritmos/Practica-8.o"
+	@echo "... AnalisisDeAlgoritmos/Practica-8.i"
+	@echo "... AnalisisDeAlgoritmos/Practica-8.s"
+	@echo "... Pracrica9-1.o"
+	@echo "... Pracrica9-1.i"
+	@echo "... Pracrica9-1.s"
+	@echo "... Practica-9.o"
+	@echo "... Practica-9.i"
+	@echo "... Practica-9.s"
 .PHONY : help
 
 
