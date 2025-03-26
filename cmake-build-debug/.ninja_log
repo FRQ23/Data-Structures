@@ -1,10 +1,7 @@
 # ninja log v5
-0	61	7483960437026385	build.ninja	d3e45b0d19b5cd5f
-1	60	7483959518667353	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3/Practica3.c.obj	b33458a9cae9ed3b
-60	111	7483959519158109	siu.exe	853b914c50686cc1
-0	56	7483960437026385	build.ninja	d3e45b0d19b5cd5f
-0	26	7483960437426864	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
-0	57	7483960832311670	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
-57	108	7483960832787825	siu.exe	80af24551171232a
-1	59	7483961705374999	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
+0	56	7646570249519663	build.ninja	d3e45b0d19b5cd5f
 59	111	7483961705874610	siu.exe	80af24551171232a
+1	60	7483959518667353	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica3/Practica3.c.obj	b33458a9cae9ed3b
+1	59	7483961705374999	CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica4.c.obj	2d13a9373fcab57f
+0	80	7646570249519663	build.ninja	d3e45b0d19b5cd5f
+1	144	7646570251132970	CMakeFiles/siu.dir/StopBeingAverage/Practica9-1.c.obj	20866a11f01ec99
