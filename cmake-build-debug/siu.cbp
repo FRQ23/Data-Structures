@@ -78,13 +78,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-8.c">
+		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2">
 			<Option target="siu"/>
 		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/Pracrica9-1.c">
-			<Option target="siu"/>
-		</Unit>
-		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/Practica-9.c">
+		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-10.c">
 			<Option target="siu"/>
 		</Unit>
 		<Unit filename="/Users/fernandorosales/CLionProjects/Data-Structures-2/CMakeLists.txt">

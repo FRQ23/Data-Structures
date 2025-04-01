@@ -81,12 +81,12 @@ clean: CMakeFiles/siu.dir/clean
 CMakeFiles/siu.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/siu.dir/build.make CMakeFiles/siu.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target siu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target siu"
 .PHONY : CMakeFiles/siu.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/siu.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/siu.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/siu.dir/rule

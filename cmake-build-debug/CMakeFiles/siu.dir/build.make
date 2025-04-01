@@ -69,63 +69,31 @@ include CMakeFiles/siu.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/siu.dir/flags.make
 
-CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o: CMakeFiles/siu.dir/flags.make
-CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o: /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-8.c
-CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o: CMakeFiles/siu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o -MF CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o.d -o CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o -c /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-8.c
+CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o: CMakeFiles/siu.dir/flags.make
+CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o: /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-10.c
+CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o: CMakeFiles/siu.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o -MF CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o.d -o CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o -c /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-10.c
 
-CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-8.c > CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.i
+CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-10.c > CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.i
 
-CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-8.c -o CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.s
-
-CMakeFiles/siu.dir/Practica-9.c.o: CMakeFiles/siu.dir/flags.make
-CMakeFiles/siu.dir/Practica-9.c.o: /Users/fernandorosales/CLionProjects/Data-Structures-2/Practica-9.c
-CMakeFiles/siu.dir/Practica-9.c.o: CMakeFiles/siu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/siu.dir/Practica-9.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/siu.dir/Practica-9.c.o -MF CMakeFiles/siu.dir/Practica-9.c.o.d -o CMakeFiles/siu.dir/Practica-9.c.o -c /Users/fernandorosales/CLionProjects/Data-Structures-2/Practica-9.c
-
-CMakeFiles/siu.dir/Practica-9.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/siu.dir/Practica-9.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/fernandorosales/CLionProjects/Data-Structures-2/Practica-9.c > CMakeFiles/siu.dir/Practica-9.c.i
-
-CMakeFiles/siu.dir/Practica-9.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/siu.dir/Practica-9.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fernandorosales/CLionProjects/Data-Structures-2/Practica-9.c -o CMakeFiles/siu.dir/Practica-9.c.s
-
-CMakeFiles/siu.dir/Pracrica9-1.c.o: CMakeFiles/siu.dir/flags.make
-CMakeFiles/siu.dir/Pracrica9-1.c.o: /Users/fernandorosales/CLionProjects/Data-Structures-2/Pracrica9-1.c
-CMakeFiles/siu.dir/Pracrica9-1.c.o: CMakeFiles/siu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/siu.dir/Pracrica9-1.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/siu.dir/Pracrica9-1.c.o -MF CMakeFiles/siu.dir/Pracrica9-1.c.o.d -o CMakeFiles/siu.dir/Pracrica9-1.c.o -c /Users/fernandorosales/CLionProjects/Data-Structures-2/Pracrica9-1.c
-
-CMakeFiles/siu.dir/Pracrica9-1.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/siu.dir/Pracrica9-1.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/fernandorosales/CLionProjects/Data-Structures-2/Pracrica9-1.c > CMakeFiles/siu.dir/Pracrica9-1.c.i
-
-CMakeFiles/siu.dir/Pracrica9-1.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/siu.dir/Pracrica9-1.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fernandorosales/CLionProjects/Data-Structures-2/Pracrica9-1.c -o CMakeFiles/siu.dir/Pracrica9-1.c.s
+CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-10.c -o CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.s
 
 # Object files for target siu
 siu_OBJECTS = \
-"CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o" \
-"CMakeFiles/siu.dir/Practica-9.c.o" \
-"CMakeFiles/siu.dir/Pracrica9-1.c.o"
+"CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o"
 
 # External object files for target siu
 siu_EXTERNAL_OBJECTS =
 
-siu: CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o
-siu: CMakeFiles/siu.dir/Practica-9.c.o
-siu: CMakeFiles/siu.dir/Pracrica9-1.c.o
+siu: CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o
 siu: CMakeFiles/siu.dir/build.make
 siu: CMakeFiles/siu.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable siu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/fernandorosales/CLionProjects/Data-Structures-2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable siu"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/siu.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

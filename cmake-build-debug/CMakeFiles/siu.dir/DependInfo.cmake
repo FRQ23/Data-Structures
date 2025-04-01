@@ -8,9 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-8.c" "CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o" "gcc" "CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-8.c.o.d"
-  "/Users/fernandorosales/CLionProjects/Data-Structures-2/Pracrica9-1.c" "CMakeFiles/siu.dir/Pracrica9-1.c.o" "gcc" "CMakeFiles/siu.dir/Pracrica9-1.c.o.d"
-  "/Users/fernandorosales/CLionProjects/Data-Structures-2/Practica-9.c" "CMakeFiles/siu.dir/Practica-9.c.o" "gcc" "CMakeFiles/siu.dir/Practica-9.c.o.d"
+  "/Users/fernandorosales/CLionProjects/Data-Structures-2/AnalisisDeAlgoritmos/Practica-10.c" "CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o" "gcc" "CMakeFiles/siu.dir/AnalisisDeAlgoritmos/Practica-10.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
