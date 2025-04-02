@@ -1,0 +1,14 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     practica-10
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _newNode, symObjAddr: 0x0, symBinAddr: 0x100003740, symSize: 0xB0 }
+  - { offsetInCU: 0xAC, offset: 0xAC, size: 0x8, addend: 0x0, symName: _newNode, symObjAddr: 0x0, symBinAddr: 0x100003740, symSize: 0xB0 }
+  - { offsetInCU: 0x112, offset: 0x112, size: 0x8, addend: 0x0, symName: _freeNode, symObjAddr: 0xB0, symBinAddr: 0x1000037F0, symSize: 0x30 }
+  - { offsetInCU: 0x12F, offset: 0x12F, size: 0x8, addend: 0x0, symName: _push, symObjAddr: 0xE0, symBinAddr: 0x100003820, symSize: 0x60 }
+  - { offsetInCU: 0x17F, offset: 0x17F, size: 0x8, addend: 0x0, symName: _pop, symObjAddr: 0x140, symBinAddr: 0x100003880, symSize: 0x20 }
+  - { offsetInCU: 0x19A, offset: 0x19A, size: 0x8, addend: 0x0, symName: _isEmpty, symObjAddr: 0x160, symBinAddr: 0x1000038A0, symSize: 0x20 }
+  - { offsetInCU: 0x1B5, offset: 0x1B5, size: 0x8, addend: 0x0, symName: _isSymmetric, symObjAddr: 0x180, symBinAddr: 0x1000038C0, symSize: 0x50 }
+  - { offsetInCU: 0x36E, offset: 0x36E, size: 0x8, addend: 0x0, symName: _solveTSP, symObjAddr: 0x1D0, symBinAddr: 0x100003910, symSize: 0x470 }
+  - { offsetInCU: 0x67E, offset: 0x67E, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x640, symBinAddr: 0x100003D80, symSize: 0x11E }
+...
