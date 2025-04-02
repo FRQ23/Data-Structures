@@ -8,6 +8,7 @@
 
 #define INT_MAX 9999999
 
+
 // Estructura para representar un nodo en el árbol de búsqueda
 typedef struct Node {
     int level;
@@ -16,6 +17,25 @@ typedef struct Node {
     int* visited;
     struct Node* parent;
 } Node;
+
+// Cola de prioridad
+typedef struct {
+    Node* nodes[1000];
+    int size;
+} PriorityQueue;
+
+
+//Prototipos de funciones
+
+Node* newNode(int level, int cost, const int* parentPath, const int* parentVisited, Node* parent, int N);
+void freeNode(Node* node);
+void push(PriorityQueue* pq, Node* node);
+Node* pop(PriorityQueue* pq);
+int isEmpty(PriorityQueue* pq);
+int isSymmetric(int** dist, int N);
+void solveTSP(int** dist, int N);
+
+
 
 // Función para crear un nuevo nodo
 Node* newNode(int level, int cost, const int* parentPath, const int* parentVisited, Node* parent, int N) {
@@ -44,11 +64,7 @@ void freeNode(Node* node) {
     }
 }
 
-// Cola de prioridad
-typedef struct {
-    Node* nodes[1000];
-    int size;
-} PriorityQueue;
+
 
 void push(PriorityQueue* pq, Node* node) {
     pq->nodes[pq->size++] = node;
@@ -125,12 +141,12 @@ void solveTSP(int** dist, int N) {
 
     // Imprimir la mejor ruta encontrada
     if (bestNode) {
-        printf("Ruta óptima: ");
+        printf("Ruta optima: ");
         for (int i = 0; i < N; i++) {
-            printf("%d → ", bestNode->path[i]);
+            printf("%d -> ", bestNode->path[i]);
         }
         printf("0\n");
-        printf("Distancia mínima: %d\n", minCost);
+        printf("Distancia minima: %d\n", minCost);
         freeNode(bestNode);
     }
 
@@ -140,7 +156,7 @@ void solveTSP(int** dist, int N) {
 
 int main() {
     int N;
-    printf("Ingrese el número de ciudades: ");
+    printf("Ingrese el numero de ciudades: ");
     scanf("%d", &N);
 
     int** dist = (int**)malloc(N * sizeof(int*));
